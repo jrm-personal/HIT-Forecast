@@ -256,6 +256,12 @@
   .club-window-block.tier-ok .wind-bar-bg { background: rgba(20,90,50,0.18); }
   .club-window-block .wind-bar-marks { color: inherit; opacity: 0.85; }
   .club-window-block .window-cond-line { border-top-color: rgba(0,0,0,0.18); }
+  /* Club-window scale-chip: force white bg, keep tier-coloured text */
+  .club-window-block .scale-chip { background: #ffffff; }
+  .club-window-block .scale-chip.tier-glass    { color: #145a32; }
+  .club-window-block .scale-chip.tier-skiable  { color: #196f3d; }
+  .club-window-block .scale-chip.tier-marginal { color: #5a4a1a; }
+  .club-window-block .scale-chip.tier-rough    { color: #b03a2e; }
   .scale-chip {
     font-size: 11px;
     font-weight: 700;
@@ -347,7 +353,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Sun 26 Apr</div>
-        <div class="verdict-badge verdict-go">GLASS ★</div>
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked</span>
@@ -418,7 +423,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Mon 27 Apr</div>
-        <div class="verdict-badge verdict-ok">SKIABLE</div>
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked · Anzac Day public holiday</span>
@@ -488,7 +492,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Tue 28 Apr</div>
-        <div class="verdict-badge verdict-ok">SKIABLE</div>
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked · recurring</span>
@@ -558,7 +561,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Wed 29 Apr</div>
-        <div class="verdict-badge verdict-ok">SKIABLE</div>
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked · recurring</span>
@@ -628,7 +630,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Thu 30 Apr</div>
-        <div class="verdict-badge verdict-ok">SKIABLE</div>
       </div>
       <div class="hit-strip empty">
         <span class="hit-label">Water available</span>
@@ -698,7 +699,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Fri 1 May</div>
-        <div class="verdict-badge verdict-ok">SKIABLE</div>
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked · recurring</span>
@@ -768,7 +768,6 @@
     <div class="day-card">
       <div class="day-header">
         <div class="day-title">Sat 2 May</div>
-        <div class="verdict-badge verdict-go">GLASS</div>
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked</span>
