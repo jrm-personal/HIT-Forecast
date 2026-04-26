@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HIT forecast</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #1abcd6;
+    color: #1a2332;
+    min-height: 100vh;
+    padding: 24px;
+  }
+  .container { max-width: 1200px; margin: 0 auto; }
+  header {
+    background: rgba(255,255,255,0.96);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  }
+  h1 {
+    font-size: 28px;
+    color: #0a3d62;
+    margin-bottom: 8px;
+  }
+  .subtitle { color: #5a6c7d; font-size: 15px; }
+  .legend {
+    display: flex;
+    gap: 16px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+    font-size: 13px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .legend-swatch {
+    width: 18px; height: 18px; border-radius: 4px;
+  }
+  .top-picks {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .pick-card {
+    background: rgba(255,255,255,0.96);
+    border-radius: 12px;
+    padding: 20px;
+    border-left: 6px solid #2ecc71;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .pick-card.silver { border-left-color: #95a5a6; }
+  .pick-card.bronze { border-left-color: #e67e22; }
+  .pick-rank {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #2ecc71;
+    margin-bottom: 6px;
+  }
+  .pick-card.silver .pick-rank { color: #7f8c8d; }
+  .pick-card.bronze .pick-rank { color: #e67e22; }
+  .pick-day { font-size: 18px; font-weight: 700; margin-bottom: 4px; }
+  .pick-time { font-size: 14px; color: #1e5e8e; margin-bottom: 10px; }
+  .pick-detail { font-size: 13px; color: #5a6c7d; }
+  .day-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .day-card {
+    background: rgba(255,255,255,0.96);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  .day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e8ecef;
+  }
+  .day-title { font-size: 17px; font-weight: 700; color: #0a3d62; }
+  .verdict-badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .verdict-go { background: #d5f5e3; color: #1e8449; }
+  .verdict-ok { background: #fef9e7; color: #b9770e; }
+  .verdict-skip { background: #fadbd8; color: #b03a2e; }
+  .compass-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+  .compass-label { font-size: 12px; color: #5a6c7d; margin-bottom: 4px; }
+  .stat-row {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-value { font-size: 14px; font-weight: 600; }
+  .wind-bar-wrap { margin-bottom: 12px; }
+  .wind-bar-bg {
+    background: rgba(0,0,0,0.08);
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    container-type: inline-size;
+  }
+  .wind-bar-fill {
+    height: 100%;
+    background-image: linear-gradient(90deg, #27ae60 0%, #7dcea0 25%, #f1c40f 50%, #e74c3c 100%);
+    background-size: 100cqw 100%;
+    background-repeat: no-repeat;
+    background-position: left center;
+    border-radius: 5px;
+    transition: width 0.4s;
+  }
+  /* Inside the (already tinted) club block, give the bar track a clearer base */
+  .club-window-block .wind-bar-bg { background: rgba(255,255,255,0.55); }
+  .wind-bar-marks {
+    position: relative;
+    height: 14px;
+    font-size: 9px;
+    color: #95a5a6;
+    margin-top: 2px;
+  }
+  .wind-bar-marks span {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+  .window-time-large {
+    font-size: 22px;
+    font-weight: 800;
+    color: #0a3d62;
+    text-align: center;
+    margin: 6px 0 2px;
+  }
+  .window-time-sub {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: #1976d2;
+    text-align: center;
+    margin-bottom: 12px;
+    font-weight: 700;
+  }
+  .window-cond-line {
+    font-size: 12.5px;
+    color: #34495e;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #e8ecef;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+  .weather-row {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #5a6c7d;
+  }
+  .hit-strip {
+    background: #eaf6fb;
+    border-left: 4px solid #1abcd6;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: #0a3d62;
+    line-height: 1.45;
+  }
+  .hit-strip .hit-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #0e7e96;
+    margin-bottom: 3px;
+    display: block;
+  }
+  .hit-strip strong { font-weight: 700; color: #0a3d62; }
+  .hit-strip .hit-note {
+    font-size: 11px;
+    color: #5a6c7d;
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .hit-strip.empty {
+    background: #f8f9fa;
+    border-left-color: #bdc3c7;
+    color: #7f8c8d;
+  }
+  .hit-strip.empty .hit-label { color: #95a5a6; }
+  .window-block {
+    margin-bottom: 14px;
+    padding: 14px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+  }
+  .window-block:last-child { margin-bottom: 0; }
+  .window-block-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid currentColor;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    opacity: 0.95;
+  }
+  .window-block-header .wb-name { text-align: left; }
+  .window-block-header .scale-chip { justify-self: center; }
+  .window-block-header .wb-time { text-align: right; letter-spacing: 0.5px; }
+  /* Best window block: neutral light grey */
+  .best-window-block {
+    background: #f8f9fa;
+    border-color: #e2e6ea;
+    color: #34495e;
+  }
+  /* Club window block: tier colours match the wind-speed scale */
+  .club-window-block.tier-ideal { background: #a9dfbf; color: #145a32; }
+  .club-window-block.tier-ok { background: #c8ebd2; color: #196f3d; }
+  .club-window-block.tier-marginal { background: #f1c40f; color: #5a4a1a; }
+  .club-window-block.tier-rough { background: #e74c3c; color: #ffffff; }
+  /* Inside the club block, force inner text colours to inherit so they stay readable on the tier background */
+  .club-window-block .window-time-large,
+  .club-window-block .window-time-sub,
+  .club-window-block .compass-label,
+  .club-window-block .stat-value,
+  .club-window-block .weather-row,
+  .club-window-block .weather-row span,
+  .club-window-block .window-cond-line { color: inherit; }
+  .club-window-block .compass-row svg circle:first-of-type { fill: rgba(255,255,255,0.92); stroke: currentColor; }
+  .club-window-block.tier-ideal .compass-row svg circle:first-of-type,
+  .club-window-block.tier-ok .compass-row svg circle:first-of-type { fill: rgba(255,255,255,0.85); }
+  .club-window-block .compass-row svg text { fill: currentColor; }
+  .club-window-block .wind-bar-marks { color: inherit; opacity: 0.85; }
+  .club-window-block .window-cond-line { border-top-color: rgba(0,0,0,0.18); }
+  /* Club-window scale-chip: force white bg, keep tier-coloured text.
+     Per-tier overrides need their own background to outrank .scale-chip.tier-X */
+  .club-window-block .scale-chip.tier-glass    { background: #ffffff; color: #145a32; }
+  .club-window-block .scale-chip.tier-skiable  { background: #ffffff; color: #196f3d; }
+  .club-window-block .scale-chip.tier-marginal { background: #ffffff; color: #5a4a1a; }
+  .club-window-block .scale-chip.tier-rough    { background: #ffffff; color: #b03a2e; }
+  .scale-chip {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .scale-chip.tier-glass    { background: #a9dfbf; color: #145a32; }
+  .scale-chip.tier-skiable  { background: #c8ebd2; color: #196f3d; }
+  .scale-chip.tier-marginal { background: #f1c40f; color: #5a4a1a; }
+  .scale-chip.tier-rough    { background: #e74c3c; color: #ffffff; }
+  /* Best-window-block border colour matches its wind-speed tier (scale chip) */
+  .best-window-block { border-width: 2px; }
+  .best-window-block.tier-glass    { border-color: #27ae60; }
+  .best-window-block.tier-skiable  { border-color: #7dcea0; }
+  .best-window-block.tier-marginal { border-color: #f1c40f; }
+  .best-window-block.tier-rough    { border-color: #e74c3c; }
+  .shelter-section, .thresholds-section {
+    background: rgba(255,255,255,0.96);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  }
+  h2 {
+    font-size: 20px;
+    color: #0a3d62;
+    margin-bottom: 16px;
+  }
+  .threshold-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .threshold-card {
+    padding: 14px;
+    border-radius: 8px;
+    color: white;
+  }
+  .threshold-card .label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; opacity: 0.9; }
+  .threshold-card .value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+  .threshold-card .desc { font-size: 12px; margin-top: 4px; opacity: 0.95; }
+  footer {
+    background: rgba(255,255,255,0.96);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-size: 13px;
+    color: #5a6c7d;
+  }
+  footer a { color: #1976d2; text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap; margin-bottom: 8px;">
+      <a href="https://hitwaterski.com.au" target="_blank" style="display: inline-block;">
+        <img src="HIT-logo.png"
+             alt="HIT Waterski Club"
+             style="max-height: 90px; max-width: 100%; height: auto; display: block;">
+      </a>
+      <h1 style="font-size: 28px; margin: 0;">Slalom Forecast</h1>
+    </div>
+    <div class="subtitle">Sun 26 April – Sat 2 May 2026 · AWST</div>
+    <div class="subtitle" style="margin-top: 6px; font-size: 12px; color: #1976d2; font-weight: 600;">Last updated: <span id="last-updated">Sun 26 April 2026, 17:29 AWST</span></div>
+    <div class="legend">
+      <div style="font-size:12px; color:#5a6c7d; margin-right:6px;"><strong>Compass = direction &times; speed:</strong></div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#27ae60"></div>Glass &middot; &lt; 5 kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#7dcea0"></div>Skiable &middot; 5&ndash;10 kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f1c40f"></div>Marginal &middot; 10&ndash;15 kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#e74c3c"></div>Rough &middot; 15+ kt</div>
+    </div>
+  </header>
+
+  <div class="day-grid">
+
+    <!-- Sun 26 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Sun 26 Apr</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked</span>
+        <strong>0600–0800</strong> · Training
+        <div class="hit-note">Then WASBC State Titles 0800–1700 (water unavailable to HIT after 8am)</div>
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">6 kt</div>
+        <div class="window-time-sub">East-Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(294 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">East-Southeast &middot; from</span>
+            <span class="stat-value">6 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:28%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>☀️ Sunny</span><span>10–15°C</span><span>0 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind · East-Southeast 6 kt across the club window · dry, cool morning · lightest of the week</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">1–3 pm</span></div>
+      <div class="window-time-large" style="color: #1e8449;">1–3 pm</div>
+      <div class="window-time-sub" style="color: #1e8449;">★ Best of the week · midday</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(301 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">East-Southeast · BEST direction</span>
+          <span class="stat-value">5 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>☀️ Sunny</span><span>26–27°C</span><span>0 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · East-Southeast 5 kt across the 1–3 pm window · dry · lightest of the week</div>
+      </div>
+    </div>
+
+    <!-- Mon 27 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Mon 27 Apr</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · Anzac Day public holiday</span>
+        <strong>0600–1800</strong> · Training (HIT / Show Ski WA, all-day water access)
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">East-Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(301 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">East-Southeast &middot; from</span>
+            <span class="stat-value">5 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>🌧️ Rain</span><span>13–15°C</span><span>15–25 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind · East-Southeast 5 kt across the club window · heavy rain forecast (95% in window, 15–25mm daily) — radar check critical</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">11 am–1 pm</span></div>
+      <div class="window-time-large">11 am–1 pm</div>
+      <div class="window-time-sub">Late morning · best 2-hr window</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(327 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">South-Southeast · BEST direction</span>
+          <span class="stat-value">6 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:28%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>🌧️ Rain</span><span>17–20°C</span><span>15–25 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · South-Southeast 6 kt across the 11 am–1 pm window · wettest day this week (15–25mm, 100% daily, 80% in window) — radar check critical before launching · mild</div>
+      </div>
+    </div>
+
+    <!-- Tue 28 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Tue 28 Apr</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · recurring</span>
+        <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">6 kt</div>
+        <div class="window-time-sub">Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(321 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">Southeast &middot; from</span>
+            <span class="stat-value">6 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>🌦️ Showers</span><span>13–17°C</span><span>5–10 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind · Southeast 6 kt across the club window · 35–40% rain in window — radar check before launching</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
+      <div class="window-time-sub">Sunrise · best 2-hr window</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(321 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">Southeast · BEST direction</span>
+          <span class="stat-value">6 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>🌦️ Showers</span><span>13–17°C</span><span>5–10 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · Southeast 6 kt across the 7–9 am window · still wet (5–10mm, 80% daily, ~30% in window) — Monday's tail end, radar check before launching · mild</div>
+      </div>
+    </div>
+
+    <!-- Wed 29 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Wed 29 Apr</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · recurring</span>
+        <strong>0600–0900</strong> · HIT Club training — overlaps the best window 7–9am
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">South-Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(343 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">South-Southeast &middot; from</span>
+            <span class="stat-value">5 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:26%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>🌦️ Showers possible</span><span>14–18°C</span><span>< 2 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind · South-Southeast 5 kt across the club window · 10–20% shower risk · mild</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
+      <div class="window-time-sub">Sunrise · best 2-hr window</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(346 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">South-Southeast · BEST direction</span>
+          <span class="stat-value">5 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:26%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>🌦️ Showers possible</span><span>14–18°C</span><span>< 2 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · South-Southeast 5 kt across the 7–9 am window · showers possible (55% daily, ~20% in window, < 2mm) — radar check before launching · mild</div>
+      </div>
+    </div>
+
+    <!-- Thu 30 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Thu 30 Apr</div>
+      </div>
+      <div class="hit-strip empty">
+        <span class="hit-label">Water available</span>
+        No bookings on the calendar — open water all day
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(325 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">Southeast &middot; from</span>
+            <span class="stat-value">5 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:26%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>⛅ Partly cloudy</span><span>13–16°C</span><span>< 1 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind · Southeast 5 kt across the club window · cool, low rain risk · clean morning</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
+      <div class="window-time-sub">Sunrise · best 2-hr window</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(322 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">Southeast · BEST direction</span>
+          <span class="stat-value">5 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:27%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>⛅ Partly cloudy</span><span>13–16°C</span><span>< 1 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · Southeast 5 kt across the 7–9 am window · low rain risk (30% daily, ~10% in window, < 1mm) · cool morning · cleanest day of the week</div>
+      </div>
+    </div>
+
+    <!-- Fri 1 May -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Fri 1 May</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · recurring</span>
+        <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">8 kt</div>
+        <div class="window-time-sub">South-Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(337 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">South-Southeast &middot; from</span>
+            <span class="stat-value">8 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:42%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>🌦️ Possible shower</span><span>8–12°C</span><span>< 1 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + workable wind · South-Southeast 8–9 kt across the club window · 30% shower risk · cool</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
+      <div class="window-time-sub">Sunrise · best 2-hr window</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(338 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">South-Southeast · BEST direction</span>
+          <span class="stat-value">9 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:44%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>🌦️ Possible shower</span><span>8–12°C</span><span>< 1 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · South-Southeast 9 kt across the 7–9 am window · shower risk (45% daily, 30% in window, < 1mm) — wind ramps after 9am, get on early · cool</div>
+      </div>
+    </div>
+
+    <!-- Sat 2 May -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Sat 2 May</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked</span>
+        <strong>1300–1800</strong> · State Series training
+        <div class="hit-note">Barefoot Ironman training holds the water 0600–1300 first</div>
+      </div>
+      <div class="window-block club-window-block tier-ok">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">8 kt</div>
+        <div class="window-time-sub">Southeast &middot; standing slot</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(321 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">Southeast &middot; from</span>
+            <span class="stat-value">8 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:38%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>⛅ Partly cloudy</span><span>8–12°C</span><span>< 1 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind · Southeast 7–8 kt across the club window · low rain risk · cool start</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
+      <div class="window-time-sub">Sunrise · best 2-hr window</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(320 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">Southeast · BEST direction</span>
+          <span class="stat-value">8 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:40%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>⛅ Partly cloudy</span><span>8–12°C</span><span>< 1 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind · Southeast 8 kt across the 7–9 am window · low rain risk (15% daily, < 1mm) · cool · long-range outlook so verify mid-week</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="shelter-section">
+    <h2>Course shelter — wind direction guide</h2>
+    <p style="margin-bottom: 16px; color: #5a6c7d; font-size: 14px;">
+      The slalom course sits in the channel east of Heirisson Island, downstream of the Causeway Bridge.
+      <strong style="color:#1e8449;">Southeast and East winds are the best</strong> — they come over Charles Paterson Park, Burswood and the eastern bank, which break up the fetch before it reaches the course.
+      <strong style="color:#9a7d0a;">West, South and Northwest are average</strong> — Heirisson Island, the southern bank, or the angled fetch keep things workable but not glassy.
+      <strong style="color:#922b21;">North and Northeast are the worst</strong> — open Perth Water fetch flattens straight onto the course.
+      <strong style="color:#922b21;">Southwest is also bad</strong>.
+    </p>
+    <div class="map-canvas" style="position: relative; width: 100%; aspect-ratio: 1334 / 778; background: #cce4f2; border-radius: 8px; overflow: hidden;">
+      <img src="map.png" alt="Heirisson Island map" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+      <svg viewBox="0 0 1334 778" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"
+           style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none;">
+
+        <!-- Slalom course is hardcoded as a yellow line in map.png -->
+
+        <!-- BEST: SE wind (one green arrow pointing NW — direction wind moves) -->
+        <g>
+          <line x1="1180" y1="710" x2="1060" y2="590" stroke="#27ae60" stroke-width="7" marker-end="url(#arrowGreen)"/>
+          <rect x="1075" y="720" width="170" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="1160" y="740" font-size="16" font-weight="700" fill="#1e8449" text-anchor="middle">Southeast wind</text>
+          <text x="1160" y="758" font-size="13" font-weight="700" fill="#1e8449" text-anchor="middle">BEST ★</text>
+        </g>
+
+        <!-- BEST: E wind (green arrow pointing W) -->
+        <g>
+          <line x1="1280" y1="475" x2="1115" y2="475" stroke="#27ae60" stroke-width="7" marker-end="url(#arrowGreen)"/>
+          <rect x="1135" y="430" width="160" height="38" fill="white" opacity="0.92" rx="4"/>
+          <text x="1215" y="450" font-size="14" font-weight="700" fill="#1e8449" text-anchor="middle">East wind</text>
+          <text x="1215" y="464" font-size="11" font-weight="700" fill="#1e8449" text-anchor="middle">BEST ★</text>
+        </g>
+
+        <!-- AVERAGE: W wind (amber arrow pointing E) -->
+        <g>
+          <line x1="60" y1="475" x2="225" y2="475" stroke="#f39c12" stroke-width="7" marker-end="url(#arrowYellow)"/>
+          <rect x="40" y="430" width="155" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="118" y="450" font-size="15" font-weight="700" fill="#9a7d0a" text-anchor="middle">West wind</text>
+          <text x="118" y="466" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
+        </g>
+
+        <!-- AVERAGE: NW wind (amber arrow pointing SE) -->
+        <g>
+          <line x1="200" y1="100" x2="370" y2="270" stroke="#f39c12" stroke-width="7" marker-end="url(#arrowYellow)"/>
+          <rect x="40" y="55" width="200" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="140" y="76" font-size="15" font-weight="700" fill="#9a7d0a" text-anchor="middle">Northwest wind</text>
+          <text x="140" y="92" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
+        </g>
+
+        <!-- WORST: N wind (red dashed arrow pointing S) -->
+        <g>
+          <line x1="615" y1="40" x2="615" y2="220" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <rect x="535" y="55" width="160" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="615" y="76" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">North wind</text>
+          <text x="615" y="92" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">WORST ✗</text>
+        </g>
+
+        <!-- WORST: NE wind (red dashed arrow pointing SW) -->
+        <g>
+          <line x1="1100" y1="100" x2="950" y2="260" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <rect x="1060" y="55" width="200" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="1160" y="76" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">Northeast wind</text>
+          <text x="1160" y="92" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">WORST ✗</text>
+        </g>
+
+        <!-- BAD: SW wind (red dashed arrow pointing NE) -->
+        <g>
+          <line x1="180" y1="710" x2="320" y2="570" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <rect x="20" y="720" width="200" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="120" y="740" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">Southwest wind</text>
+          <text x="120" y="758" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">BAD ✗</text>
+        </g>
+
+        <!-- AVERAGE: S wind (amber arrow pointing N) -->
+        <g>
+          <line x1="640" y1="720" x2="640" y2="580" stroke="#f39c12" stroke-width="7" marker-end="url(#arrowYellow)"/>
+          <rect x="560" y="725" width="160" height="44" fill="white" opacity="0.92" rx="4"/>
+          <text x="640" y="746" font-size="15" font-weight="700" fill="#9a7d0a" text-anchor="middle">South wind</text>
+          <text x="640" y="762" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
+        </g>
+
+        <!-- North compass -->
+        <g transform="translate(70, 70)">
+          <circle cx="0" cy="0" r="32" fill="white" opacity="0.94" stroke="#0a3d62" stroke-width="2"/>
+          <path d="M 0 -22 L -8 8 L 0 4 L 8 8 Z" fill="#d32f2f"/>
+          <text x="0" y="28" font-size="14" font-weight="700" text-anchor="middle" fill="#0a3d62">N</text>
+        </g>
+
+        <defs>
+          <marker id="arrowGreen" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
+            <path d="M0,0 L0,36 L32,18 z" fill="#27ae60" stroke="#1e8449" stroke-width="1.5" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arrowYellow" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
+            <path d="M0,0 L0,36 L32,18 z" fill="#f39c12" stroke="#9a7d0a" stroke-width="1.5" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
+            <path d="M0,0 L0,36 L32,18 z" fill="#e74c3c" stroke="#922b21" stroke-width="1.5" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <div class="thresholds-section">
+    <h2>Slalom condition thresholds &mdash; wind speed scale</h2>
+    <p style="margin-bottom: 14px; color: #5a6c7d; font-size: 13.5px;">
+      Same gradient as the wind bar on each day card &mdash; read across to see how the forecast speed lands on the slalom scale.
+    </p>
+    <div style="margin-bottom: 18px;">
+      <div style="position: relative; height: 28px; border-radius: 6px; overflow: hidden; background: linear-gradient(90deg, #27ae60 0%, #27ae60 25%, #7dcea0 25%, #7dcea0 50%, #f1c40f 50%, #f1c40f 75%, #e74c3c 75%, #e74c3c 100%);">
+        <div style="position: absolute; left: 12.5%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Glass</div>
+        <div style="position: absolute; left: 37.5%; top: 50%; transform: translate(-50%, -50%); color: #1e5e3a; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Skiable</div>
+        <div style="position: absolute; left: 62.5%; top: 50%; transform: translate(-50%, -50%); color: #6b5400; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Marginal</div>
+        <div style="position: absolute; left: 87.5%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Rough</div>
+      </div>
+      <div style="position: relative; height: 18px; margin-top: 4px; font-size: 11px; color: #5a6c7d; font-weight: 600;">
+        <span style="position: absolute; left: 0%; transform: translateX(-50%);">0 kt</span>
+        <span style="position: absolute; left: 25%; transform: translateX(-50%);">5 kt</span>
+        <span style="position: absolute; left: 50%; transform: translateX(-50%);">10 kt</span>
+        <span style="position: absolute; left: 75%; transform: translateX(-50%);">15 kt</span>
+        <span style="position: absolute; left: 100%; transform: translateX(-50%);">20+ kt</span>
+      </div>
+    </div>
+    <div class="threshold-grid">
+      <div class="threshold-card" style="background:#27ae60;">
+        <div class="label">Glass</div>
+        <div class="value">&lt; 5 kt</div>
+        <div class="desc">Mirror-flat. Optimal conditions.</div>
+      </div>
+      <div class="threshold-card" style="background:#7dcea0; color:#1e3a26;">
+        <div class="label" style="color:#1e3a26;">Skiable</div>
+        <div class="value">5&ndash;10 kt</div>
+        <div class="desc" style="color:#1e3a26;">Light ripple. Fully skiable.</div>
+      </div>
+      <div class="threshold-card" style="background:#f1c40f; color:#5a4a1a;">
+        <div class="label" style="color:#5a4a1a;">Marginal</div>
+        <div class="value">10&ndash;15 kt</div>
+        <div class="desc" style="color:#5a4a1a;">Choppy. Rough on slalom &mdash; recreational only.</div>
+      </div>
+      <div class="threshold-card" style="background:#e74c3c;">
+        <div class="label">Rough</div>
+        <div class="value">15+ kt</div>
+        <div class="desc">Whitecaps mid-river. Slalom out of the question.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Verify morning-of:</strong>
+    <a href="https://wind.willyweather.com.au/wa/perth/swan-river--causeway.html" target="_blank">WillyWeather Causeway wind</a> &middot;
+    <a href="https://www.willyweather.com.au/wa/perth/swan-river--causeway.html" target="_blank">WillyWeather Causeway weather</a> &middot;
+    <a href="https://rainfall.willyweather.com.au/wa/perth/swan-river--causeway.html" target="_blank">WillyWeather Causeway rainfall</a> &middot;
+    <a href="https://hitwaterski.com.au" target="_blank">Heirisson Island Waterski Club</a> &middot;
+    <a href="https://www.waterskiwa.com.au/wp-content/uploads/2017/07/BurswoodCalendar_2025-2026-1.xlsx" target="_blank">WaterSki WA Burswood calendar (xlsx)</a>
+    <br><br>
+    <em>Forecast refreshed Sun 26 April 2026, 17:29 AWST &middot; WillyWeather data &middot; HIT bookings from WaterSki WA Burswood calendar 2025/26 &middot; all times AWST &middot; wind speeds in knots</em>
+  </footer>
+
+</div>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
