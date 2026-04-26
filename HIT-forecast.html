@@ -623,4 +623,86 @@
           <line x1="640" y1="720" x2="640" y2="580" stroke="#f39c12" stroke-width="7" marker-end="url(#arrowYellow)"/>
           <rect x="560" y="725" width="160" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="640" y="746" font-size="15" font-weight="700" fill="#9a7d0a" text-anchor="middle">South wind</text>
-          <
+          <text x="640" y="762" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
+        </g>
+
+        <!-- North compass -->
+        <g transform="translate(70, 70)">
+          <circle cx="0" cy="0" r="32" fill="white" opacity="0.94" stroke="#0a3d62" stroke-width="2"/>
+          <path d="M 0 -22 L -8 8 L 0 4 L 8 8 Z" fill="#d32f2f"/>
+          <text x="0" y="28" font-size="14" font-weight="700" text-anchor="middle" fill="#0a3d62">N</text>
+        </g>
+
+        <defs>
+          <marker id="arrowGreen" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
+            <path d="M0,0 L0,36 L32,18 z" fill="#27ae60" stroke="#1e8449" stroke-width="1.5" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arrowYellow" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
+            <path d="M0,0 L0,36 L32,18 z" fill="#f39c12" stroke="#9a7d0a" stroke-width="1.5" stroke-linejoin="round"/>
+          </marker>
+          <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
+            <path d="M0,0 L0,36 L32,18 z" fill="#e74c3c" stroke="#922b21" stroke-width="1.5" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+      </svg>
+    </div>
+  </div>
+
+  <div class="thresholds-section">
+    <h2>Slalom condition thresholds &mdash; wind speed scale</h2>
+    <p style="margin-bottom: 14px; color: #5a6c7d; font-size: 13.5px;">
+      Same gradient as the wind bar on each day card &mdash; read across to see how the forecast speed lands on the slalom scale.
+    </p>
+    <div style="margin-bottom: 18px;">
+      <div style="position: relative; height: 28px; border-radius: 6px; overflow: hidden; background: linear-gradient(90deg, #27ae60 0%, #27ae60 25%, #7dcea0 25%, #7dcea0 50%, #f1c40f 50%, #f1c40f 75%, #e74c3c 75%, #e74c3c 100%);">
+        <div style="position: absolute; left: 12.5%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Glass</div>
+        <div style="position: absolute; left: 37.5%; top: 50%; transform: translate(-50%, -50%); color: #1e5e3a; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Skiable</div>
+        <div style="position: absolute; left: 62.5%; top: 50%; transform: translate(-50%, -50%); color: #6b5400; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Marginal</div>
+        <div style="position: absolute; left: 87.5%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Rough</div>
+      </div>
+      <div style="position: relative; height: 18px; margin-top: 4px; font-size: 11px; color: #5a6c7d; font-weight: 600;">
+        <span style="position: absolute; left: 0%; transform: translateX(-50%);">0 kt</span>
+        <span style="position: absolute; left: 25%; transform: translateX(-50%);">5 kt</span>
+        <span style="position: absolute; left: 50%; transform: translateX(-50%);">10 kt</span>
+        <span style="position: absolute; left: 75%; transform: translateX(-50%);">15 kt</span>
+        <span style="position: absolute; left: 100%; transform: translateX(-50%);">20+ kt</span>
+      </div>
+    </div>
+    <div class="threshold-grid">
+      <div class="threshold-card" style="background:#27ae60;">
+        <div class="label">Glass</div>
+        <div class="value">&lt; 5 kt</div>
+        <div class="desc">Mirror-flat. Optimal conditions.</div>
+      </div>
+      <div class="threshold-card" style="background:#7dcea0; color:#1e3a26;">
+        <div class="label" style="color:#1e3a26;">Skiable</div>
+        <div class="value">5&ndash;10 kt</div>
+        <div class="desc" style="color:#1e3a26;">Light ripple. Fully skiable.</div>
+      </div>
+      <div class="threshold-card" style="background:#f1c40f; color:#5a4a1a;">
+        <div class="label" style="color:#5a4a1a;">Marginal</div>
+        <div class="value">10&ndash;15 kt</div>
+        <div class="desc" style="color:#5a4a1a;">Choppy. Rough on slalom &mdash; recreational only.</div>
+      </div>
+      <div class="threshold-card" style="background:#e74c3c;">
+        <div class="label">Rough</div>
+        <div class="value">15+ kt</div>
+        <div class="desc">Whitecaps mid-river. Slalom out of the question.</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <strong>Verify morning-of:</strong>
+    <a href="https://wind.willyweather.com.au/wa/perth/swan-river--causeway.html" target="_blank">WillyWeather Causeway wind</a> &middot;
+    <a href="https://www.willyweather.com.au/wa/perth/swan-river--causeway.html" target="_blank">WillyWeather Causeway weather</a> &middot;
+    <a href="https://rainfall.willyweather.com.au/wa/perth/swan-river--causeway.html" target="_blank">WillyWeather Causeway rainfall</a> &middot;
+    <a href="https://hitwaterski.com.au" target="_blank">Heirisson Island Waterski Club</a> &middot;
+    <a href="https://www.waterskiwa.com.au/wp-content/uploads/2017/07/BurswoodCalendar_2025-2026-1.xlsx" target="_blank">WaterSki WA Burswood calendar (xlsx)</a>
+    <br><br>
+    <em>Forecast refreshed Sun 26 Apr 2026, 16:18 AWST &middot; WillyWeather data &middot; HIT bookings from WaterSki WA Burswood calendar 2025/26 &middot; all times AWST &middot; wind speeds in knots</em>
+  </footer>
+
+</div>
+</body>
+</html>
