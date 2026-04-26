@@ -176,6 +176,38 @@
     font-size: 13px;
     color: #5a6c7d;
   }
+  .hit-strip {
+    background: #eaf6fb;
+    border-left: 4px solid #1abcd6;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: #0a3d62;
+    line-height: 1.45;
+  }
+  .hit-strip .hit-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    color: #0e7e96;
+    margin-bottom: 3px;
+    display: block;
+  }
+  .hit-strip strong { font-weight: 700; color: #0a3d62; }
+  .hit-strip .hit-note {
+    font-size: 11px;
+    color: #5a6c7d;
+    margin-top: 3px;
+    font-style: italic;
+  }
+  .hit-strip.empty {
+    background: #f8f9fa;
+    border-left-color: #bdc3c7;
+    color: #7f8c8d;
+  }
+  .hit-strip.empty .hit-label { color: #95a5a6; }
   .shelter-section, .thresholds-section {
     background: rgba(255,255,255,0.96);
     border-radius: 16px;
@@ -237,6 +269,9 @@
     <div style="margin-top: 16px; background: #fef9e7; border-left: 4px solid #f1c40f; border-radius: 6px; padding: 12px 14px; font-size: 13px; color: #5a4a1a; line-height: 1.5;">
       <strong>Note:</strong> All wind, temperature, rainfall and direction data shown on each day card is for that day's <strong>best 2-hour window only</strong> — not the full day. The window is the lightest, most workable 2-hour stretch between sunrise and sunset for the slalom course.
     </div>
+    <div style="margin-top: 10px; background: #eaf6fb; border-left: 4px solid #1abcd6; border-radius: 6px; padding: 10px 14px; font-size: 12.5px; color: #0a3d62; line-height: 1.5;">
+      <strong>HIT booked strip</strong> on each day card shows the club's water-time at Burswood for that date — pulled from the <a href="https://www.waterskiwa.com.au/wp-content/uploads/2017/07/BurswoodCalendar_2025-2026-1.xlsx" target="_blank" style="color:#0e7e96;">WaterSki WA 2025/26 calendar</a> plus the standing Tue/Wed/Fri 0600–0900 slot. Grey strip = no club booking.
+    </div>
   </header>
 
   <div class="day-grid">
@@ -246,6 +281,11 @@
       <div class="day-header">
         <div class="day-title">Sun 26 Apr</div>
         <div class="verdict-badge verdict-go">IDEAL ★</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked</span>
+        <strong>0600–0800</strong> · Training
+        <div class="hit-note">Then WASBC State Titles 0800–1700 (water unavailable to HIT after 8am)</div>
       </div>
       <div class="window-time-large" style="color: #1e8449;">1:00–3:00 pm</div>
       <div class="window-time-sub" style="color: #1e8449;">★ Best of the week · early afternoon</div>
@@ -281,6 +321,10 @@
         <div class="day-title">Mon 27 Apr</div>
         <div class="verdict-badge verdict-ok">OK</div>
       </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · Anzac Day public holiday</span>
+        <strong>0600–1800</strong> · Training (HIT / Show Ski WA, all-day water access)
+      </div>
       <div class="window-time-large">11:00 am–1:00 pm</div>
       <div class="window-time-sub">Late morning · best 2-hr window</div>
       <div class="compass-row">
@@ -314,6 +358,10 @@
       <div class="day-header">
         <div class="day-title">Tue 28 Apr</div>
         <div class="verdict-badge verdict-ok">OK</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · recurring</span>
+        <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
       </div>
       <div class="window-time-large">11:00 am–1:00 pm</div>
       <div class="window-time-sub">Late morning · best 2-hr window</div>
@@ -349,6 +397,10 @@
         <div class="day-title">Wed 29 Apr</div>
         <div class="verdict-badge verdict-ok">OK</div>
       </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · recurring</span>
+        <strong>0600–0900</strong> · HIT Club training — overlaps the best window 7–9am
+      </div>
       <div class="window-time-large">7:00–9:00 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
       <div class="compass-row">
@@ -382,6 +434,10 @@
       <div class="day-header">
         <div class="day-title">Thu 30 Apr</div>
         <div class="verdict-badge verdict-go">IDEAL</div>
+      </div>
+      <div class="hit-strip empty">
+        <span class="hit-label">No HIT booking</span>
+        Open water — no club, BIAWA Mon/Tue/Thu 1300–1600 only
       </div>
       <div class="window-time-large">7:00–9:00 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
@@ -417,6 +473,10 @@
         <div class="day-title">Fri 1 May</div>
         <div class="verdict-badge verdict-go">IDEAL</div>
       </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked · recurring</span>
+        <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
+      </div>
       <div class="window-time-large">11:00 am–1:00 pm</div>
       <div class="window-time-sub">Late morning · best 2-hr window</div>
       <div class="compass-row">
@@ -450,6 +510,11 @@
       <div class="day-header">
         <div class="day-title">Sat 2 May</div>
         <div class="verdict-badge verdict-ok">OK</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked</span>
+        <strong>1300–1800</strong> · State Series training
+        <div class="hit-note">Barefoot Ironman training holds the water 0600–1300 first</div>
       </div>
       <div class="window-time-large">7:00–9:00 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
@@ -558,57 +623,4 @@
           <line x1="640" y1="720" x2="640" y2="580" stroke="#f39c12" stroke-width="7" marker-end="url(#arrowYellow)"/>
           <rect x="560" y="725" width="160" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="640" y="746" font-size="15" font-weight="700" fill="#9a7d0a" text-anchor="middle">South wind</text>
-          <text x="640" y="762" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
-        </g>
-
-        <!-- North compass -->
-        <g transform="translate(70, 70)">
-          <circle cx="0" cy="0" r="32" fill="white" opacity="0.94" stroke="#0a3d62" stroke-width="2"/>
-          <path d="M 0 -22 L -8 8 L 0 4 L 8 8 Z" fill="#d32f2f"/>
-          <text x="0" y="28" font-size="14" font-weight="700" text-anchor="middle" fill="#0a3d62">N</text>
-        </g>
-
-        <defs>
-          <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="#27ae60"/>
-          </marker>
-          <marker id="arrowYellow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="#f39c12"/>
-          </marker>
-          <marker id="arrowRed" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
-            <path d="M0,0 L0,6 L8,3 z" fill="#e74c3c"/>
-          </marker>
-        </defs>
-      </svg>
-    </div>
-  </div>
-
-  <div class="thresholds-section">
-    <h2>Slalom condition thresholds</h2>
-    <div class="threshold-grid">
-      <div class="threshold-card" style="background:#27ae60;">
-        <div class="label">Glass</div>
-        <div class="value">&lt; 5 kt</div>
-        <div class="desc">Mirror-flat. Optimal conditions.</div>
-      </div>
-      <div class="threshold-card" style="background:#7dcea0;">
-        <div class="label">Skiable</div>
-        <div class="value">5–10 kt</div>
-        <div class="desc">Light ripple. Fully skiable.</div>
-      </div>
-      <div class="threshold-card" style="background:#f1c40f;">
-        <div class="label">Marginal</div>
-        <div class="value">10–15 kt</div>
-        <div class="desc">Choppy. Tough on slalom — recreational only.</div>
-      </div>
-      <div class="threshold-card" style="background:#e74c3c;">
-        <div class="label">Tough</div>
-        <div class="value">15+ kt</div>
-        <div class="desc">Whitecaps mid-river. Slalom out of the question.</div>
-      </div>
-    </div>
-  </div>
-
-  <footer>
-    <strong>Verify morning-of:</strong>
-    <a href="https://wind.willyweather.com.au/wa/perth/swan-ri
+          <text x="640" y="762" font-size="13" font-weight="700" fill="#9a7d0a" text-ancho
