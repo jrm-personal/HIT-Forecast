@@ -212,21 +212,22 @@
   }
   .window-block:last-child { margin-bottom: 0; }
   .window-block-header {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid currentColor;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     font-weight: 700;
-    margin-bottom: 10px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid currentColor;
-    opacity: 0.9;
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    gap: 8px;
+    opacity: 0.95;
   }
-  .window-block-header .wb-name { font-weight: 700; }
-  .window-block-header .wb-time { font-weight: 700; letter-spacing: 0.5px; }
+  .window-block-header .wb-name { text-align: left; }
+  .window-block-header .scale-chip { justify-self: center; }
+  .window-block-header .wb-time { text-align: right; letter-spacing: 0.5px; }
   /* Best window block: neutral light grey */
   .best-window-block {
     background: #f8f9fa;
@@ -255,14 +256,6 @@
   .club-window-block.tier-ok .wind-bar-bg { background: rgba(20,90,50,0.18); }
   .club-window-block .wind-bar-marks { color: inherit; opacity: 0.85; }
   .club-window-block .window-cond-line { border-top-color: rgba(0,0,0,0.18); }
-  .window-time-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin: 6px 0 2px;
-  }
-  .window-time-row .window-time-large { margin: 0; text-align: left; }
   .scale-chip {
     font-size: 11px;
     font-weight: 700;
@@ -276,10 +269,12 @@
   .scale-chip.tier-skiable  { background: #c8ebd2; color: #196f3d; }
   .scale-chip.tier-marginal { background: #f1c40f; color: #5a4a1a; }
   .scale-chip.tier-rough    { background: #e74c3c; color: #ffffff; }
-  /* Verdict border now lives on the best-window-block instead of the whole day card */
-  .best-window-block.verdict-go   { border-color: #27ae60; border-width: 2px; }
-  .best-window-block.verdict-ok   { border-color: #f39c12; border-width: 2px; }
-  .best-window-block.verdict-skip { border-color: #ec7063; border-width: 2px; }
+  /* Best-window-block border colour matches its wind-speed tier (scale chip) */
+  .best-window-block { border-width: 2px; }
+  .best-window-block.tier-glass    { border-color: #27ae60; }
+  .best-window-block.tier-skiable  { border-color: #7dcea0; }
+  .best-window-block.tier-marginal { border-color: #f1c40f; }
+  .best-window-block.tier-rough    { border-color: #e74c3c; }
   .shelter-section, .thresholds-section {
     background: rgba(255,255,255,0.96);
     border-radius: 16px;
@@ -360,11 +355,8 @@
         <div class="hit-note">Then WASBC State Titles 0800–1700 (water unavailable to HIT after 8am)</div>
       </div>
       <div class="window-block club-window-block tier-ideal">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-glass">GLASS</span>
-          <div class="window-time-large">4-6 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">4-6 kt</div>
         <div class="window-time-sub">Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -391,12 +383,9 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; Southeast 4-6 kt across 6:30-8:30 am &middot; dry, cool morning &middot; lightest of the week</div>
       </div>
-      <div class="window-block best-window-block verdict-go">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">12–2 pm</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large" style="color: #1e8449;">12–2 pm</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">12–2 pm</span></div>
+      <div class="window-time-large" style="color: #1e8449;">12–2 pm</div>
       <div class="window-time-sub" style="color: #1e8449;">★ Best of the week · midday</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -436,11 +425,8 @@
         <strong>0600–1800</strong> · Training (HIT / Show Ski WA, all-day water access)
       </div>
       <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7-9 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">7-9 kt</div>
         <div class="window-time-sub">Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -467,12 +453,9 @@
         </div>
         <div class="window-cond-line">BEST direction + workable wind &middot; Southeast 7-9 kt across the club window &middot; wettest day of the week, radar check critical</div>
       </div>
-      <div class="window-block best-window-block verdict-ok">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">10 am–12 pm</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">10 am–12 pm</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">10 am–12 pm</span></div>
+      <div class="window-time-large">10 am–12 pm</div>
       <div class="window-time-sub">Late morning · best 2-hr window</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -512,11 +495,8 @@
         <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
       </div>
       <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7-9 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">7-9 kt</div>
         <div class="window-time-sub">East-Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -543,12 +523,9 @@
         </div>
         <div class="window-cond-line">BEST direction + workable wind &middot; East-Southeast 7-9 kt across the club window &middot; tail end of Monday's system, radar check before launching</div>
       </div>
-      <div class="window-block best-window-block verdict-ok">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">11 am–1 pm</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">11 am–1 pm</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">11 am–1 pm</span></div>
+      <div class="window-time-large">11 am–1 pm</div>
       <div class="window-time-sub">Late morning · best 2-hr window</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -588,11 +565,8 @@
         <strong>0600–0900</strong> · HIT Club training — overlaps the best window 7–9am
       </div>
       <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">5 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
         <div class="window-time-sub">South-Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -619,12 +593,9 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; South-Southeast 5 kt across 6:30-8:30 am &middot; same as today's best window &middot; mostly dry</div>
       </div>
-      <div class="window-block best-window-block verdict-ok">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7–9 am</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -664,11 +635,8 @@
         No bookings on the calendar — open water all day
       </div>
       <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">6 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">6 kt</div>
         <div class="window-time-sub">Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -695,12 +663,9 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; Southeast 6 kt across the club window &middot; same as today's best window &middot; cool, dry</div>
       </div>
-      <div class="window-block best-window-block verdict-ok">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7–9 am</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -740,11 +705,8 @@
         <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
       </div>
       <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">8-10 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">8-10 kt</div>
         <div class="window-time-sub">South-Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -771,12 +733,9 @@
         </div>
         <div class="window-cond-line">BEST direction + workable wind &middot; South-Southeast 8-10 kt across the club window &middot; same as today's best window &middot; shower risk</div>
       </div>
-      <div class="window-block best-window-block verdict-ok">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7–9 am</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -817,11 +776,8 @@
         <div class="hit-note">Barefoot Ironman training holds the water 0600–1300 first</div>
       </div>
       <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7-9 kt</div>
-        </div>
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">7-9 kt</div>
         <div class="window-time-sub">Southeast &middot; standing slot</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
@@ -848,12 +804,9 @@
         </div>
         <div class="window-cond-line">BEST direction + workable wind &middot; Southeast 7-9 kt across the club window &middot; same as today's best window &middot; dry</div>
       </div>
-      <div class="window-block best-window-block verdict-go">
-        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-row">
-          <span class="scale-chip tier-skiable">SKIABLE</span>
-          <div class="window-time-large">7–9 am</div>
-        </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">Best 2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
+      <div class="window-time-large">7–9 am</div>
       <div class="window-time-sub">Sunrise · best 2-hr window</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
