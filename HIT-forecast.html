@@ -178,6 +178,19 @@
     font-size: 13px;
     color: #5a6c7d;
   }
+  .rain-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 700;
+    color: #0a3d62;
+  }
+  .rain-pill.rain-light  { background: #d6ecf8; color: #1976d2; }
+  .rain-pill.rain-medium { background: #a8d8f0; color: #0a3d62; }
+  .rain-pill.rain-heavy  { background: #1976d2; color: #ffffff; }
+  .club-window-block .rain-pill.rain-light  { background: rgba(255,255,255,0.85); color: #1976d2; }
+  .club-window-block .rain-pill.rain-medium { background: rgba(255,255,255,0.92); color: #0a3d62; }
+  .club-window-block .rain-pill.rain-heavy  { background: #1976d2; color: #ffffff; }
   .hit-strip {
     background: #eaf6fb;
     border-left: 4px solid #1abcd6;
@@ -450,7 +463,7 @@
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>🌧️ Rain</span><span>13–15°C</span><span>15–25 mm rain</span>
+          <span>🌧️ Rain</span><span>13–15°C</span><span><span class="rain-pill rain-heavy">15–25 mm rain</span></span>
         </div>
         <div class="window-cond-line">BEST direction + light wind · East-Southeast 5 kt across the club window · heavy rain forecast (95% in window, 15–25mm daily) — radar check critical</div>
       </div>
@@ -479,7 +492,7 @@
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>🌧️ Rain</span><span>17–20°C</span><span>15–25 mm rain</span>
+        <span>🌧️ Rain</span><span>17–20°C</span><span><span class="rain-pill rain-heavy">15–25 mm rain</span></span>
       </div>
       <div class="window-cond-line">BEST direction + light wind · South-Southeast 6 kt across the 11 am–1 pm window · wettest day this week (15–25mm, 100% daily, 80% in window) — radar check critical before launching · mild</div>
       </div>
@@ -519,7 +532,7 @@
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>🌦️ Showers</span><span>13–17°C</span><span>5–10 mm rain</span>
+          <span>🌦️ Showers</span><span>13–17°C</span><span><span class="rain-pill rain-medium">5–10 mm rain</span></span>
         </div>
         <div class="window-cond-line">BEST direction + light wind · Southeast 6 kt across the club window · 35–40% rain in window — radar check before launching</div>
       </div>
@@ -548,7 +561,7 @@
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>🌦️ Showers</span><span>13–17°C</span><span>5–10 mm rain</span>
+        <span>🌦️ Showers</span><span>13–17°C</span><span><span class="rain-pill rain-medium">5–10 mm rain</span></span>
       </div>
       <div class="window-cond-line">BEST direction + light wind · Southeast 6 kt across the 7–9 am window · still wet (5–10mm, 80% daily, ~30% in window) — Monday's tail end, radar check before launching · mild</div>
       </div>
@@ -588,7 +601,7 @@
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>🌦️ Showers possible</span><span>14–18°C</span><span>< 2 mm rain</span>
+          <span>🌦️ Showers possible</span><span>14–18°C</span><span><span class="rain-pill rain-light">&lt; 2 mm rain</span></span>
         </div>
         <div class="window-cond-line">BEST direction + light wind · South-Southeast 5 kt across the club window · 10–20% shower risk · mild</div>
       </div>
@@ -617,7 +630,7 @@
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>🌦️ Showers possible</span><span>14–18°C</span><span>< 2 mm rain</span>
+        <span>🌦️ Showers possible</span><span>14–18°C</span><span><span class="rain-pill rain-light">&lt; 2 mm rain</span></span>
       </div>
       <div class="window-cond-line">BEST direction + light wind · South-Southeast 5 kt across the 7–9 am window · showers possible (55% daily, ~20% in window, < 2mm) — radar check before launching · mild</div>
       </div>
@@ -657,7 +670,7 @@
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>⛅ Partly cloudy</span><span>13–16°C</span><span>< 1 mm rain</span>
+          <span>⛅ Partly cloudy</span><span>13–16°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
         </div>
         <div class="window-cond-line">BEST direction + light wind · Southeast 5 kt across the club window · cool, low rain risk · clean morning</div>
       </div>
@@ -686,7 +699,7 @@
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>13–16°C</span><span>< 1 mm rain</span>
+        <span>⛅ Partly cloudy</span><span>13–16°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
       </div>
       <div class="window-cond-line">BEST direction + light wind · Southeast 5 kt across the 7–9 am window · low rain risk (30% daily, ~10% in window, < 1mm) · cool morning · cleanest day of the week</div>
       </div>
@@ -726,7 +739,7 @@
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>🌦️ Possible shower</span><span>8–12°C</span><span>< 1 mm rain</span>
+          <span>🌦️ Possible shower</span><span>8–12°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
         </div>
         <div class="window-cond-line">BEST direction + workable wind · South-Southeast 8–9 kt across the club window · 30% shower risk · cool</div>
       </div>
@@ -755,7 +768,7 @@
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>🌦️ Possible shower</span><span>8–12°C</span><span>< 1 mm rain</span>
+        <span>🌦️ Possible shower</span><span>8–12°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
       </div>
       <div class="window-cond-line">BEST direction + light wind · South-Southeast 9 kt across the 7–9 am window · shower risk (45% daily, 30% in window, < 1mm) — wind ramps after 9am, get on early · cool</div>
       </div>
@@ -796,7 +809,7 @@
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>⛅ Partly cloudy</span><span>8–12°C</span><span>< 1 mm rain</span>
+          <span>⛅ Partly cloudy</span><span>8–12°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
         </div>
         <div class="window-cond-line">BEST direction + light wind · Southeast 7–8 kt across the club window · low rain risk · cool start</div>
       </div>
@@ -825,7 +838,7 @@
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>8–12°C</span><span>< 1 mm rain</span>
+        <span>⛅ Partly cloudy</span><span>8–12°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
       </div>
       <div class="window-cond-line">BEST direction + light wind · Southeast 8 kt across the 7–9 am window · low rain risk (15% daily, < 1mm) · cool · long-range outlook so verify mid-week</div>
       </div>
