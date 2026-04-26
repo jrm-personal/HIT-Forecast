@@ -117,17 +117,30 @@
   .stat-value { font-size: 14px; font-weight: 600; }
   .wind-bar-wrap { margin-bottom: 12px; }
   .wind-bar-bg {
-    background: #ecf0f1;
+    background: linear-gradient(90deg,
+      #27ae60 0%, #27ae60 25%,
+      #7dcea0 25%, #7dcea0 50%,
+      #f1c40f 50%, #f1c40f 75%,
+      #e74c3c 75%, #e74c3c 100%);
     height: 10px;
     border-radius: 5px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
   }
   .wind-bar-fill {
     height: 100%;
-    background: linear-gradient(90deg, #2ecc71 0%, #f1c40f 50%, #e74c3c 100%);
-    border-radius: 5px;
+    background: transparent;
+    border-right: 3px solid #1a2332;
+    box-shadow: 1px 0 0 white, -1px 0 0 white;
     transition: width 0.4s;
+  }
+  /* Inside the club block, show the discrete scale faded so the marker still reads */
+  .club-window-block .wind-bar-bg {
+    background: linear-gradient(90deg,
+      rgba(39,174,96,0.55) 0%, rgba(39,174,96,0.55) 25%,
+      rgba(125,206,160,0.6) 25%, rgba(125,206,160,0.6) 50%,
+      rgba(241,196,15,0.6) 50%, rgba(241,196,15,0.6) 75%,
+      rgba(231,76,60,0.65) 75%, rgba(231,76,60,0.65) 100%);
   }
   .wind-bar-marks {
     position: relative;
@@ -251,17 +264,14 @@
   .club-window-block.tier-ideal .compass-row svg circle:first-of-type,
   .club-window-block.tier-ok .compass-row svg circle:first-of-type { fill: rgba(255,255,255,0.85); }
   .club-window-block .compass-row svg text { fill: currentColor; }
-  .club-window-block .wind-bar-bg { background: rgba(255,255,255,0.45); }
-  .club-window-block.tier-ideal .wind-bar-bg,
-  .club-window-block.tier-ok .wind-bar-bg { background: rgba(20,90,50,0.18); }
   .club-window-block .wind-bar-marks { color: inherit; opacity: 0.85; }
   .club-window-block .window-cond-line { border-top-color: rgba(0,0,0,0.18); }
-  /* Club-window scale-chip: force white bg, keep tier-coloured text */
-  .club-window-block .scale-chip { background: #ffffff; }
-  .club-window-block .scale-chip.tier-glass    { color: #145a32; }
-  .club-window-block .scale-chip.tier-skiable  { color: #196f3d; }
-  .club-window-block .scale-chip.tier-marginal { color: #5a4a1a; }
-  .club-window-block .scale-chip.tier-rough    { color: #b03a2e; }
+  /* Club-window scale-chip: force white bg, keep tier-coloured text.
+     Per-tier overrides need their own background to outrank .scale-chip.tier-X */
+  .club-window-block .scale-chip.tier-glass    { background: #ffffff; color: #145a32; }
+  .club-window-block .scale-chip.tier-skiable  { background: #ffffff; color: #196f3d; }
+  .club-window-block .scale-chip.tier-marginal { background: #ffffff; color: #5a4a1a; }
+  .club-window-block .scale-chip.tier-rough    { background: #ffffff; color: #b03a2e; }
   .scale-chip {
     font-size: 11px;
     font-weight: 700;
