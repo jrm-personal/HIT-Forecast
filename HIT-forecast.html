@@ -238,8 +238,8 @@
     color: #34495e;
   }
   /* Club window block: tier colours match the wind-speed scale */
-  .club-window-block.tier-ideal { background: #27ae60; color: #ffffff; }
-  .club-window-block.tier-ok { background: #7dcea0; color: #15402a; }
+  .club-window-block.tier-ideal { background: #a9dfbf; color: #145a32; }
+  .club-window-block.tier-ok { background: #eafaf1; color: #196f3d; }
   .club-window-block.tier-marginal { background: #f1c40f; color: #5a4a1a; }
   .club-window-block.tier-rough { background: #e74c3c; color: #ffffff; }
   /* Inside the club block, force inner text colours to inherit so they stay readable on the tier background */
@@ -251,8 +251,12 @@
   .club-window-block .weather-row span,
   .club-window-block .window-cond-line { color: inherit; }
   .club-window-block .compass-row svg circle:first-of-type { fill: rgba(255,255,255,0.92); stroke: currentColor; }
+  .club-window-block.tier-ideal .compass-row svg circle:first-of-type,
+  .club-window-block.tier-ok .compass-row svg circle:first-of-type { fill: rgba(255,255,255,0.85); }
   .club-window-block .compass-row svg text { fill: currentColor; }
   .club-window-block .wind-bar-bg { background: rgba(255,255,255,0.45); }
+  .club-window-block.tier-ideal .wind-bar-bg,
+  .club-window-block.tier-ok .wind-bar-bg { background: rgba(20,90,50,0.18); }
   .club-window-block .wind-bar-marks { color: inherit; opacity: 0.85; }
   .club-window-block .window-cond-line { border-top-color: rgba(0,0,0,0.18); }
   .shelter-section, .thresholds-section {
