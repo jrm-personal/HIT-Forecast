@@ -87,7 +87,7 @@
   }
   .wind-bar-fill {
     height: 100%;
-    background-image: linear-gradient(90deg, #27ae60 0%, #7dcea0 25%, #f1c40f 50%, #e74c3c 100%);
+    background-image: linear-gradient(90deg, #27ae60 0%, #7dcea0 25%, #f7dc6f 50%, #f1948a 100%);
     background-size: 100cqw 100%;
     background-repeat: no-repeat;
     background-position: left center;
@@ -217,8 +217,8 @@
   /* Club window block: tier colours match the wind-speed scale */
   .club-window-block.tier-ideal { background: #a9dfbf; color: #145a32; }
   .club-window-block.tier-ok { background: #c8ebd2; color: #196f3d; }
-  .club-window-block.tier-marginal { background: #f1c40f; color: #5a4a1a; }
-  .club-window-block.tier-rough { background: #e74c3c; color: #ffffff; }
+  .club-window-block.tier-marginal { background: #f7dc6f; color: #5a4a1a; }
+  .club-window-block.tier-rough { background: #f1948a; color: #7b241c; }
   /* Inside the club block, force inner text colours to inherit so they stay readable on the tier background */
   .club-window-block .window-time-large,
   .club-window-block .window-time-sub,
@@ -250,14 +250,14 @@
   }
   .scale-chip.tier-glass    { background: #a9dfbf; color: #145a32; }
   .scale-chip.tier-skiable  { background: #c8ebd2; color: #196f3d; }
-  .scale-chip.tier-marginal { background: #f1c40f; color: #5a4a1a; }
-  .scale-chip.tier-rough    { background: #e74c3c; color: #ffffff; }
+  .scale-chip.tier-marginal { background: #f7dc6f; color: #5a4a1a; }
+  .scale-chip.tier-rough    { background: #f1948a; color: #7b241c; }
   /* Best-window-block border colour matches its wind-speed tier (scale chip) */
   .best-window-block { border-width: 2px; }
   .best-window-block.tier-glass    { border-color: #27ae60; }
   .best-window-block.tier-skiable  { border-color: #7dcea0; }
-  .best-window-block.tier-marginal { border-color: #f1c40f; }
-  .best-window-block.tier-rough    { border-color: #e74c3c; }
+  .best-window-block.tier-marginal { border-color: #f7dc6f; }
+  .best-window-block.tier-rough    { border-color: #f1948a; }
   .shelter-section, .thresholds-section {
     background: rgba(255,255,255,0.96);
     border-radius: 16px;
@@ -313,8 +313,8 @@
       <div style="font-size:12px; color:#5a6c7d; margin-right:6px;"><strong>Compass = direction &times; speed:</strong></div>
       <div class="legend-item"><div class="legend-swatch" style="background:#27ae60"></div>Glass &middot; &le; 5 kt</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#7dcea0"></div>Skiable &middot; 6&ndash;10 kt</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:#f1c40f"></div>Marginal &middot; 10&ndash;15 kt</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:#e74c3c"></div>Rough &middot; 15+ kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f7dc6f"></div>Marginal &middot; 10&ndash;15 kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f1948a"></div>Rough &middot; 15+ kt</div>
     </div>
   </header>
 
@@ -824,13 +824,13 @@
         <!-- Slalom course is hardcoded as a yellow line in map.png -->
 
         <g>
-          <line x1="900" y1="180" x2="900" y2="290" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <line x1="900" y1="180" x2="900" y2="290" stroke="#f1948a" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
           <rect x="825" y="58" width="150" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="900" y="75" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">North wind</text>
           <text x="900" y="93" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">WORST ✗</text>
         </g>
         <g>
-          <line x1="1084" y1="256" x2="1006" y2="334" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <line x1="1084" y1="256" x2="1006" y2="334" stroke="#f1948a" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
           <rect x="1080" y="163" width="150" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="1155" y="180" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">Northeast wind</text>
           <text x="1155" y="198" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">WORST ✗</text>
@@ -854,7 +854,7 @@
           <text x="900" y="773" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
         </g>
         <g>
-          <line x1="716" y1="624" x2="794" y2="546" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <line x1="716" y1="624" x2="794" y2="546" stroke="#f1948a" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
           <rect x="570" y="673" width="150" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="645" y="690" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">Southwest wind</text>
           <text x="645" y="708" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">BAD ✗</text>
@@ -887,7 +887,7 @@
             <path d="M0,0 L0,36 L32,18 z" fill="#f39c12" stroke="#9a7d0a" stroke-width="1.5" stroke-linejoin="round"/>
           </marker>
           <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
-            <path d="M0,0 L0,36 L32,18 z" fill="#e74c3c" stroke="#922b21" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M0,0 L0,36 L32,18 z" fill="#f1948a" stroke="#922b21" stroke-width="1.5" stroke-linejoin="round"/>
           </marker>
         </defs>
       </svg>
@@ -900,7 +900,7 @@
       Same gradient as the wind bar on each day card &mdash; read across to see how the forecast speed lands on the slalom scale.
     </p>
     <div style="margin-bottom: 18px;">
-      <div style="position: relative; height: 28px; border-radius: 6px; overflow: hidden; background: linear-gradient(90deg, #27ae60 0%, #27ae60 25%, #7dcea0 25%, #7dcea0 50%, #f1c40f 50%, #f1c40f 75%, #e74c3c 75%, #e74c3c 100%);">
+      <div style="position: relative; height: 28px; border-radius: 6px; overflow: hidden; background: linear-gradient(90deg, #27ae60 0%, #27ae60 25%, #7dcea0 25%, #7dcea0 50%, #f7dc6f 50%, #f7dc6f 75%, #f1948a 75%, #f1948a 100%);">
         <div style="position: absolute; left: 12.5%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Glass</div>
         <div style="position: absolute; left: 37.5%; top: 50%; transform: translate(-50%, -50%); color: #1e5e3a; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Skiable</div>
         <div style="position: absolute; left: 62.5%; top: 50%; transform: translate(-50%, -50%); color: #6b5400; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Marginal</div>
@@ -925,12 +925,12 @@
         <div class="value">6&ndash;10 kt</div>
         <div class="desc" style="color:#1e3a26;">Light ripple. Fully skiable.</div>
       </div>
-      <div class="threshold-card" style="background:#f1c40f; color:#5a4a1a;">
+      <div class="threshold-card" style="background:#f7dc6f; color:#5a4a1a;">
         <div class="label" style="color:#5a4a1a;">Marginal</div>
         <div class="value">10&ndash;15 kt</div>
         <div class="desc" style="color:#5a4a1a;">Choppy. Rough on slalom &mdash; recreational only.</div>
       </div>
-      <div class="threshold-card" style="background:#e74c3c;">
+      <div class="threshold-card" style="background:#f1948a;">
         <div class="label">Rough</div>
         <div class="value">15+ kt</div>
         <div class="desc">Whitecaps mid-river. Slalom out of the question.</div>

@@ -87,7 +87,7 @@
   }
   .wind-bar-fill {
     height: 100%;
-    background-image: linear-gradient(90deg, #27ae60 0%, #7dcea0 25%, #f1c40f 50%, #e74c3c 100%);
+    background-image: linear-gradient(90deg, #27ae60 0%, #7dcea0 25%, #f7dc6f 50%, #f1948a 100%);
     background-size: 100cqw 100%;
     background-repeat: no-repeat;
     background-position: left center;
@@ -217,8 +217,8 @@
   /* Club window block: tier colours match the wind-speed scale */
   .club-window-block.tier-ideal { background: #a9dfbf; color: #145a32; }
   .club-window-block.tier-ok { background: #c8ebd2; color: #196f3d; }
-  .club-window-block.tier-marginal { background: #f1c40f; color: #5a4a1a; }
-  .club-window-block.tier-rough { background: #e74c3c; color: #ffffff; }
+  .club-window-block.tier-marginal { background: #f7dc6f; color: #5a4a1a; }
+  .club-window-block.tier-rough { background: #f1948a; color: #7b241c; }
   /* Inside the club block, force inner text colours to inherit so they stay readable on the tier background */
   .club-window-block .window-time-large,
   .club-window-block .window-time-sub,
@@ -250,14 +250,14 @@
   }
   .scale-chip.tier-glass    { background: #a9dfbf; color: #145a32; }
   .scale-chip.tier-skiable  { background: #c8ebd2; color: #196f3d; }
-  .scale-chip.tier-marginal { background: #f1c40f; color: #5a4a1a; }
-  .scale-chip.tier-rough    { background: #e74c3c; color: #ffffff; }
+  .scale-chip.tier-marginal { background: #f7dc6f; color: #5a4a1a; }
+  .scale-chip.tier-rough    { background: #f1948a; color: #7b241c; }
   /* Best-window-block border colour matches its wind-speed tier (scale chip) */
   .best-window-block { border-width: 2px; }
   .best-window-block.tier-glass    { border-color: #27ae60; }
   .best-window-block.tier-skiable  { border-color: #7dcea0; }
-  .best-window-block.tier-marginal { border-color: #f1c40f; }
-  .best-window-block.tier-rough    { border-color: #e74c3c; }
+  .best-window-block.tier-marginal { border-color: #f7dc6f; }
+  .best-window-block.tier-rough    { border-color: #f1948a; }
   .shelter-section, .thresholds-section {
     background: rgba(255,255,255,0.96);
     border-radius: 16px;
@@ -307,157 +307,18 @@
       </a>
       <h1 style="font-size: 28px; margin: 0;">Slalom Forecast</h1>
     </div>
-    <div class="subtitle">Sun 26 April – Sat 2 May 2026 · AWST</div>
-    <div class="subtitle" style="margin-top: 6px; font-size: 12px; color: #1976d2; font-weight: 600;">Last updated: <span id="last-updated">Sun 26 April 2026, 18:55 AWST</span></div>
+    <div class="subtitle">Tue 28 April &ndash; Mon 4 May 2026 &middot; AWST</div>
+    <div class="subtitle" style="margin-top: 6px; font-size: 12px; color: #1976d2; font-weight: 600;">Last updated: <span id="last-updated">Mon 27 April 2026, 18:40 AWST</span></div>
     <div class="legend">
       <div style="font-size:12px; color:#5a6c7d; margin-right:6px;"><strong>Compass = direction &times; speed:</strong></div>
       <div class="legend-item"><div class="legend-swatch" style="background:#27ae60"></div>Glass &middot; &le; 5 kt</div>
       <div class="legend-item"><div class="legend-swatch" style="background:#7dcea0"></div>Skiable &middot; 6&ndash;10 kt</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:#f1c40f"></div>Marginal &middot; 10&ndash;15 kt</div>
-      <div class="legend-item"><div class="legend-swatch" style="background:#e74c3c"></div>Rough &middot; 15+ kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f7dc6f"></div>Marginal &middot; 10&ndash;15 kt</div>
+      <div class="legend-item"><div class="legend-swatch" style="background:#f1948a"></div>Rough &middot; 15+ kt</div>
     </div>
   </header>
 
   <div class="day-grid">
-
-    <!-- Sun 26 Apr -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title">Sun 26 Apr</div>
-      </div>
-      <div class="hit-strip">
-        <span class="hit-label">HIT booked</span>
-        <strong>0600–0800</strong> · Training
-        <div class="hit-note">Then WASBC State Titles 0800–1700 (water unavailable to HIT after 8am)</div>
-      </div>
-      <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-large">6 kt</div>
-        <div class="window-time-sub">Cool morning, dry</div>
-        <div class="compass-row">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(294 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
-            </g>
-          </svg>
-          <div class="stat-row">
-            <span class="compass-label">East-Southeast &middot; from</span>
-            <span class="stat-value">6 kt</span>
-          </div>
-        </div>
-        <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:29%"></div></div>
-          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-        </div>
-        <div class="weather-row">
-          <span>⛅ Partly cloudy</span><span>10–12°C</span><span>0 mm rain</span>
-        </div>
-        <div class="window-cond-line">BEST direction + light wind · East-Southeast 6 kt across the club window · dry, cool morning · clean dawn before the front arrives Monday</div>
-      </div>
-      <div class="window-block best-window-block tier-glass">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">12–2 pm</span></div>
-      <div class="window-time-large" style="color: #1e8449;">12–2 pm</div>
-      <div class="window-time-sub" style="color: #1e8449;">Warm afternoon, dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(292 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">East-Southeast · BEST direction</span>
-          <span class="stat-value">5 kt</span>
-        </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:26%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>24–27°C</span><span>0 mm rain</span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind · East-Southeast 5 kt across the 12–2 pm window · dry, warmest day this week · lightest wind in the 7-day outlook</div>
-      </div>
-    </div>
-
-    <!-- Mon 27 Apr -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title">Mon 27 Apr</div>
-      </div>
-      <div class="hit-strip">
-        <span class="hit-label">HIT booked · Anzac Day public holiday</span>
-        <strong>0600–1800</strong> · Training (HIT / Show Ski WA, all-day water access)
-      </div>
-      <div class="window-block club-window-block tier-ideal">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-large">5 kt</div>
-        <div class="window-time-sub">Cool, heavy rain</div>
-        <div class="compass-row">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(306 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
-            </g>
-          </svg>
-          <div class="stat-row">
-            <span class="compass-label">East-Southeast &middot; from</span>
-            <span class="stat-value">5 kt</span>
-          </div>
-        </div>
-        <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:27%"></div></div>
-          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-        </div>
-        <div class="weather-row">
-          <span>🌧️ Rain</span><span>13–14°C</span><span><span class="rain-pill rain-medium">3&ndash;6 mm rain</span></span>
-        </div>
-        <div class="window-cond-line">BEST direction + light wind · East-Southeast 5 kt across the club window · heaviest rain of the week (90% in window, 15–25 mm daily) — radar check critical before launching</div>
-      </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-large">7–9 am</div>
-      <div class="window-time-sub">Wet morning, heavy rain</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(303 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">East-Southeast · BEST direction</span>
-          <span class="stat-value">6 kt</span>
-        </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:28%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>🌧️ Rain</span><span>13–15°C</span><span><span class="rain-pill rain-medium">4&ndash;7 mm rain</span></span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind · East-Southeast 6 kt across the 7–9 am window · wettest day this week (15–25 mm, 100% daily, 90% in window) — radar check critical before launching · mild</div>
-      </div>
-    </div>
 
     <!-- Tue 28 Apr -->
     <div class="day-card">
@@ -465,13 +326,13 @@
         <div class="day-title">Tue 28 Apr</div>
       </div>
       <div class="hit-strip">
-        <span class="hit-label">HIT booked · recurring</span>
-        <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
+        <span class="hit-label">HIT booked &middot; recurring</span>
+        <strong>0600&ndash;0900</strong> &middot; HIT Club training (Tue/Wed/Fri standing slot)
       </div>
       <div class="window-block club-window-block tier-ok">
         <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
         <div class="window-time-large">6 kt</div>
-        <div class="window-time-sub">Mild, light showers</div>
+        <div class="window-time-sub">Mild, heavy rain</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
@@ -479,7 +340,7 @@
             <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
             <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
             <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(321 50 50)">
+            <g transform="rotate(337 50 50)">
               <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
             </g>
           </svg>
@@ -489,225 +350,18 @@
           </div>
         </div>
         <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:31%"></div></div>
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>🌦️ Showers</span><span>13–15°C</span><span><span class="rain-pill rain-light">1&ndash;2 mm rain</span></span>
+          <span>🌧️ Rain</span><span>13&ndash;20°C</span><span><span class="rain-pill rain-medium">5&ndash;7 mm rain</span></span>
         </div>
-        <div class="window-cond-line">BEST direction + light wind · Southeast 6 kt across the club window · 35% rain in window (5–10 mm daily) — radar check before launching</div>
+        <div class="window-cond-line">BEST direction + workable wind &middot; SSE 6 kt across the club window &middot; 65% rain risk in window (90% daily, 15&ndash;25mm)</div>
       </div>
       <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-large">7–9 am</div>
-      <div class="window-time-sub">Mild, light showers</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(319 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">Southeast · BEST direction</span>
-          <span class="stat-value">7 kt</span>
-        </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:33%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>🌦️ Showers</span><span>13–17°C</span><span><span class="rain-pill rain-light">1&ndash;2 mm rain</span></span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind · Southeast 7 kt across the 7–9 am window · still wet (5–10 mm, 80% daily, 35% in window) — Monday's tail end, radar check before launching · mild</div>
-      </div>
-    </div>
-
-    <!-- Wed 29 Apr -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title">Wed 29 Apr</div>
-      </div>
-      <div class="hit-strip">
-        <span class="hit-label">HIT booked · recurring</span>
-        <strong>0600–0900</strong> · HIT Club training — overlaps the best window 7–9am
-      </div>
-      <div class="window-block club-window-block tier-ideal">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-large">5 kt</div>
-        <div class="window-time-sub">Mild, mostly dry</div>
-        <div class="compass-row">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(346 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
-            </g>
-          </svg>
-          <div class="stat-row">
-            <span class="compass-label">South-Southeast &middot; from</span>
-            <span class="stat-value">5 kt</span>
-          </div>
-        </div>
-        <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:26%"></div></div>
-          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-        </div>
-        <div class="weather-row">
-          <span>🌦️ Showers possible</span><span>14–16°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
-        </div>
-        <div class="window-cond-line">BEST direction + light wind · South-Southeast 5 kt across the club window · ~10% rain in window (55% daily, &lt; 2 mm) · mild</div>
-      </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-large">7–9 am</div>
-      <div class="window-time-sub">Mild, mostly dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(345 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">South-Southeast · BEST direction</span>
-          <span class="stat-value">6 kt</span>
-        </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:28%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>🌦️ Showers possible</span><span>14–18°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind · South-Southeast 6 kt across the 7–9 am window · clearing day (55% daily, ~10% in window, &lt; 2 mm) — radar check before launching · mild</div>
-      </div>
-    </div>
-
-    <!-- Thu 30 Apr -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title">Thu 30 Apr</div>
-      </div>
-      <div class="hit-strip empty">
-        <span class="hit-label">Water available</span>
-        No bookings on the calendar — open water all day
-      </div>
-      <div class="window-block club-window-block tier-ideal">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-large">5 kt</div>
-        <div class="window-time-sub">Cool, sunny and dry</div>
-        <div class="compass-row">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(323 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
-            </g>
-          </svg>
-          <div class="stat-row">
-            <span class="compass-label">Southeast &middot; from</span>
-            <span class="stat-value">5 kt</span>
-          </div>
-        </div>
-        <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:27%"></div></div>
-          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-        </div>
-        <div class="weather-row">
-          <span>☀️ Mostly sunny</span><span>13–14°C</span><span><span>0 mm rain</span></span>
-        </div>
-        <div class="window-cond-line">BEST direction + light wind · Southeast 5 kt across the club window · cool, only 5% rain in window (30% daily) · cleanest morning of the week</div>
-      </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-large">7–9 am</div>
-      <div class="window-time-sub">Cool, sunny and dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(320 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">Southeast · BEST direction</span>
-          <span class="stat-value">6 kt</span>
-        </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:29%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>☀️ Mostly sunny</span><span>13–16°C</span><span><span>0 mm rain</span></span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind · Southeast 6 kt across the 7–9 am window · low rain risk (30% daily, 5% in window, &lt; 1 mm) · cool morning · cleanest day of the week</div>
-      </div>
-    </div>
-
-    <!-- Fri 1 May -->
-    <div class="day-card">
-      <div class="day-header">
-        <div class="day-title">Fri 1 May</div>
-      </div>
-      <div class="hit-strip">
-        <span class="hit-label">HIT booked · recurring</span>
-        <strong>0600–0900</strong> · HIT Club training (Tue/Wed/Fri standing slot)
-      </div>
-      <div class="window-block club-window-block tier-ok">
-        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-large">9 kt</div>
-        <div class="window-time-sub">Cold, shower risk</div>
-        <div class="compass-row">
-          <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(338 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
-            </g>
-          </svg>
-          <div class="stat-row">
-            <span class="compass-label">South-Southeast &middot; from</span>
-            <span class="stat-value">9 kt</span>
-          </div>
-        </div>
-        <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:45%"></div></div>
-          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-        </div>
-        <div class="weather-row">
-          <span>🌦️ Possible shower</span><span>8–10°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
-        </div>
-        <div class="window-cond-line">BEST direction + workable wind · South-Southeast 9 kt across the club window · 30% shower risk in window (45% daily, &lt; 1 mm) · cool</div>
-      </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-large">7–9 am</div>
-      <div class="window-time-sub">Cold, shower risk</div>
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6&ndash;8 am</span></div>
+      <div class="window-time-large">6&ndash;8 am</div>
+      <div class="window-time-sub">Mild, heavy rain</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
@@ -720,18 +374,225 @@
             </g>
           </svg>
         <div class="stat-row">
-          <span class="compass-label">South-Southeast · BEST direction</span>
-          <span class="stat-value">9 kt</span>
+          <span class="compass-label">Southeast &middot; BEST direction</span>
+          <span class="stat-value">6 kt</span>
         </div>
       </div>
       <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:47%"></div></div>
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>🌦️ Possible shower</span><span>8–12°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
+        <span>🌧️ Rain</span><span>13&ndash;20°C</span><span><span class="rain-pill rain-medium">5&ndash;7 mm rain</span></span>
       </div>
-      <div class="window-cond-line">BEST direction + workable wind · South-Southeast 9 kt across the 7–9 am window · shower risk (45% daily, 30% in window, &lt; 1 mm) — wind ramps past 10 kt mid-morning, get on early · cool</div>
+      <div class="window-cond-line">BEST direction + workable wind &middot; SSE 6 kt across the 6&ndash;8 am window &middot; 65% rain risk in window (90% daily)</div>
+      </div>
+    </div>
+
+    <!-- Wed 29 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Wed 29 Apr</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked &middot; recurring</span>
+        <strong>0600&ndash;0900</strong> &middot; HIT Club training (Tue/Wed/Fri standing slot)
+      </div>
+      <div class="window-block club-window-block tier-ideal">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">Mild, mostly dry</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(305 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">East-Southeast &middot; from</span>
+            <span class="stat-value">5 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>⛅ Partly cloudy</span><span>14&ndash;23°C</span><span>0 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind &middot; ESE 5 kt across the club window &middot; 10% rain risk in window (30% daily, &lt; 1mm)</div>
+      </div>
+      <div class="window-block best-window-block tier-glass">
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6&ndash;8 am</span></div>
+      <div class="window-time-large">6&ndash;8 am</div>
+      <div class="window-time-sub">Mild, mostly dry</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(305 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">East-Southeast &middot; BEST direction</span>
+          <span class="stat-value">5 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>⛅ Partly cloudy</span><span>14&ndash;23°C</span><span>0 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind &middot; ESE 5 kt across the 6&ndash;8 am window &middot; 10% rain risk in window (30% daily)</div>
+      </div>
+    </div>
+
+    <!-- Thu 30 Apr -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Thu 30 Apr</div>
+      </div>
+      <div class="hit-strip empty">
+        <span class="hit-label">Water available</span>
+        No bookings on the calendar &mdash; open water all day
+      </div>
+      <div class="window-block club-window-block tier-ideal">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">Mild, shower risk</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(347 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">Southeast &middot; from</span>
+            <span class="stat-value">5 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>🌦️ Shower or two</span><span>13&ndash;22°C</span><span>0 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind &middot; SSE 5 kt across the club window &middot; 15% rain risk in window (55% daily, &lt; 1mm)</div>
+      </div>
+      <div class="window-block best-window-block tier-glass">
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">10&ndash;12 pm</span></div>
+      <div class="window-time-large">10&ndash;12 pm</div>
+      <div class="window-time-sub">Mild, shower risk</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(350 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">Southeast &middot; BEST direction</span>
+          <span class="stat-value">4 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:20%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>🌦️ Shower or two</span><span>13&ndash;22°C</span><span>0 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind &middot; SSE 4 kt across the 10&ndash;12 pm window &middot; 15% rain risk in window (55% daily)</div>
+      </div>
+    </div>
+
+    <!-- Fri 1 May -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Fri 1 May</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked &middot; recurring</span>
+        <strong>0600&ndash;0900</strong> &middot; HIT Club training (Tue/Wed/Fri standing slot)
+      </div>
+      <div class="window-block club-window-block tier-marginal">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-marginal">MARGINAL</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">11 kt</div>
+        <div class="window-time-sub">Cool, shower risk</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(25 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">South-Southwest &middot; from</span>
+            <span class="stat-value">11 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:55%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>🌦️ Shower or two</span><span>10&ndash;18°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
+        </div>
+        <div class="window-cond-line">AVERAGE direction + marginal wind &middot; SSW 11 kt across the club window &middot; 30% rain risk in window (60% daily, &lt; 2mm)</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">1&ndash;3 pm</span></div>
+      <div class="window-time-large">1&ndash;3 pm</div>
+      <div class="window-time-sub">Cool, shower risk</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(10 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">South &middot; BEST direction</span>
+          <span class="stat-value">10 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:50%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>🌦️ Shower or two</span><span>10&ndash;18°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
+      </div>
+      <div class="window-cond-line">AVERAGE direction + workable wind &middot; S 10 kt across the 1&ndash;3 pm window &middot; 10% rain risk in window (60% daily)</div>
       </div>
     </div>
 
@@ -742,13 +603,83 @@
       </div>
       <div class="hit-strip">
         <span class="hit-label">HIT booked</span>
-        <strong>1300–1800</strong> · State Series training
-        <div class="hit-note">Barefoot Ironman training holds the water 0600–1300 first</div>
+        <strong>1300&ndash;1800</strong> &middot; State Series training
+        <div class="hit-note">Barefoot Ironman training holds the water 0600&ndash;1300 first</div>
       </div>
       <div class="window-block club-window-block tier-ok">
         <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">6:30-8:30 am</span></div>
-        <div class="window-time-large">8 kt</div>
-        <div class="window-time-sub">Cold, mostly dry</div>
+        <div class="window-time-large">7 kt</div>
+        <div class="window-time-sub">Cool, mostly dry</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(332 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">Southeast &middot; from</span>
+            <span class="stat-value">7 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:35%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>⛅ Partly cloudy</span><span>7&ndash;18°C</span><span>0 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + workable wind &middot; SSE 7 kt across the club window &middot; 10% rain risk in window (15% daily, &lt; 1mm)</div>
+      </div>
+      <div class="window-block best-window-block tier-skiable">
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">10&ndash;12 pm</span></div>
+      <div class="window-time-large">10&ndash;12 pm</div>
+      <div class="window-time-sub">Cool, mostly dry</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(325 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">Southeast &middot; BEST direction</span>
+          <span class="stat-value">6 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>⛅ Partly cloudy</span><span>7&ndash;18°C</span><span>0 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + workable wind &middot; SE 6 kt across the 10&ndash;12 pm window &middot; 5% rain risk in window (15% daily)</div>
+      </div>
+    </div>
+
+    <!-- Sun 3 May -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Sun 3 May</div>
+      </div>
+      <div class="hit-strip">
+        <span class="hit-label">HIT booked</span>
+        <strong>0600&ndash;1100</strong> &middot; Training
+        <div class="hit-note">Then PDRC Race Day 0800&ndash;1800 (water unavailable to HIT after 8am)</div>
+      </div>
+      <div class="window-block club-window-block tier-ideal">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">Cool, mostly dry</div>
         <div class="compass-row">
           <svg width="80" height="80" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
@@ -762,21 +693,21 @@
           </svg>
           <div class="stat-row">
             <span class="compass-label">Southeast &middot; from</span>
-            <span class="stat-value">8 kt</span>
+            <span class="stat-value">5 kt</span>
           </div>
         </div>
         <div class="wind-bar-wrap">
-          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:40%"></div></div>
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
           <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
         </div>
         <div class="weather-row">
-          <span>⛅ Partly cloudy</span><span>8–10°C</span><span><span>0 mm rain</span></span>
+          <span>⛅ Partly cloudy</span><span>7&ndash;19°C</span><span>0 mm rain</span>
         </div>
-        <div class="window-cond-line">BEST direction + light wind · Southeast 8 kt across the club window · 10% rain risk in window (15% daily, &lt; 1 mm) · cool start</div>
+        <div class="window-cond-line">BEST direction + light wind &middot; SE 5 kt across the club window &middot; 5% rain risk in window (10% daily, &lt; 1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7–9 am</span></div>
-      <div class="window-time-large">7–9 am</div>
+      <div class="window-block best-window-block tier-glass">
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">12&ndash;2 pm</span></div>
+      <div class="window-time-large">12&ndash;2 pm</div>
       <div class="window-time-sub">Cool, mostly dry</div>
       <div class="compass-row">
         <svg width="80" height="80" viewBox="0 0 100 100">
@@ -785,23 +716,92 @@
             <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
             <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
             <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(319 50 50)">
+            <g transform="rotate(295 50 50)">
               <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
             </g>
           </svg>
         <div class="stat-row">
-          <span class="compass-label">Southeast · BEST direction</span>
-          <span class="stat-value">8 kt</span>
+          <span class="compass-label">East-Southeast &middot; BEST direction</span>
+          <span class="stat-value">4 kt</span>
         </div>
       </div>
       <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:41%"></div></div>
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:20%"></div></div>
         <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
       </div>
       <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>8–12°C</span><span><span>0 mm rain</span></span>
+        <span>⛅ Partly cloudy</span><span>7&ndash;19°C</span><span>0 mm rain</span>
       </div>
-      <div class="window-cond-line">BEST direction + light wind · Southeast 8 kt across the 7–9 am window · low rain risk (15% daily, 10% in window, &lt; 1 mm) · cool · long-range outlook so verify mid-week</div>
+      <div class="window-cond-line">BEST direction + light wind &middot; ESE 4 kt across the 12&ndash;2 pm window &middot; 5% rain risk in window (10% daily)</div>
+      </div>
+    </div>
+
+    <!-- Mon 4 May -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-title">Mon 4 May</div>
+      </div>
+      <div class="hit-strip empty">
+        <span class="hit-label">Water available</span>
+        No bookings on the calendar &mdash; open water all day
+      </div>
+      <div class="window-block club-window-block tier-ideal">
+        <div class="window-block-header"><span class="wb-name">Club window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6:30-8:30 am</span></div>
+        <div class="window-time-large">5 kt</div>
+        <div class="window-time-sub">Cool, mostly dry</div>
+        <div class="compass-row">
+          <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(320 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#1a2332" opacity="0.78"/>
+            </g>
+          </svg>
+          <div class="stat-row">
+            <span class="compass-label">Southeast &middot; from</span>
+            <span class="stat-value">5 kt</span>
+          </div>
+        </div>
+        <div class="wind-bar-wrap">
+          <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+          <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+        </div>
+        <div class="weather-row">
+          <span>⛅ Partly cloudy</span><span>7&ndash;20°C</span><span>0 mm rain</span>
+        </div>
+        <div class="window-cond-line">BEST direction + light wind &middot; SE 5 kt across the club window &middot; 5% rain risk in window (10% daily, &lt; 1mm)</div>
+      </div>
+      <div class="window-block best-window-block tier-glass">
+        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">6&ndash;8 am</span></div>
+      <div class="window-time-large">6&ndash;8 am</div>
+      <div class="window-time-sub">Cool, mostly dry</div>
+      <div class="compass-row">
+        <svg width="80" height="80" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
+            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
+            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
+            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
+            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
+            <g transform="rotate(320 50 50)">
+              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
+            </g>
+          </svg>
+        <div class="stat-row">
+          <span class="compass-label">Southeast &middot; BEST direction</span>
+          <span class="stat-value">5 kt</span>
+        </div>
+      </div>
+      <div class="wind-bar-wrap">
+        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
+        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
+      </div>
+      <div class="weather-row">
+        <span>⛅ Partly cloudy</span><span>7&ndash;20°C</span><span>0 mm rain</span>
+      </div>
+      <div class="window-cond-line">BEST direction + light wind &middot; SE 5 kt across the 6&ndash;8 am window &middot; 5% rain risk in window (10% daily)</div>
       </div>
     </div>
 
@@ -824,13 +824,13 @@
         <!-- Slalom course is hardcoded as a yellow line in map.png -->
 
         <g>
-          <line x1="900" y1="180" x2="900" y2="290" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <line x1="900" y1="180" x2="900" y2="290" stroke="#f1948a" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
           <rect x="825" y="58" width="150" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="900" y="75" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">North wind</text>
           <text x="900" y="93" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">WORST ✗</text>
         </g>
         <g>
-          <line x1="1084" y1="256" x2="1006" y2="334" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <line x1="1084" y1="256" x2="1006" y2="334" stroke="#f1948a" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
           <rect x="1080" y="163" width="150" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="1155" y="180" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">Northeast wind</text>
           <text x="1155" y="198" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">WORST ✗</text>
@@ -854,7 +854,7 @@
           <text x="900" y="773" font-size="13" font-weight="700" fill="#9a7d0a" text-anchor="middle">AVERAGE</text>
         </g>
         <g>
-          <line x1="716" y1="624" x2="794" y2="546" stroke="#e74c3c" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
+          <line x1="716" y1="624" x2="794" y2="546" stroke="#f1948a" stroke-width="7" stroke-dasharray="10,6" marker-end="url(#arrowRed)"/>
           <rect x="570" y="673" width="150" height="44" fill="white" opacity="0.92" rx="4"/>
           <text x="645" y="690" font-size="15" font-weight="700" fill="#922b21" text-anchor="middle">Southwest wind</text>
           <text x="645" y="708" font-size="13" font-weight="700" fill="#922b21" text-anchor="middle">BAD ✗</text>
@@ -887,7 +887,7 @@
             <path d="M0,0 L0,36 L32,18 z" fill="#f39c12" stroke="#9a7d0a" stroke-width="1.5" stroke-linejoin="round"/>
           </marker>
           <marker id="arrowRed" markerUnits="userSpaceOnUse" markerWidth="36" markerHeight="36" refX="30" refY="18" orient="auto">
-            <path d="M0,0 L0,36 L32,18 z" fill="#e74c3c" stroke="#922b21" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M0,0 L0,36 L32,18 z" fill="#f1948a" stroke="#922b21" stroke-width="1.5" stroke-linejoin="round"/>
           </marker>
         </defs>
       </svg>
@@ -900,7 +900,7 @@
       Same gradient as the wind bar on each day card &mdash; read across to see how the forecast speed lands on the slalom scale.
     </p>
     <div style="margin-bottom: 18px;">
-      <div style="position: relative; height: 28px; border-radius: 6px; overflow: hidden; background: linear-gradient(90deg, #27ae60 0%, #27ae60 25%, #7dcea0 25%, #7dcea0 50%, #f1c40f 50%, #f1c40f 75%, #e74c3c 75%, #e74c3c 100%);">
+      <div style="position: relative; height: 28px; border-radius: 6px; overflow: hidden; background: linear-gradient(90deg, #27ae60 0%, #27ae60 25%, #7dcea0 25%, #7dcea0 50%, #f7dc6f 50%, #f7dc6f 75%, #f1948a 75%, #f1948a 100%);">
         <div style="position: absolute; left: 12.5%; top: 50%; transform: translate(-50%, -50%); color: white; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Glass</div>
         <div style="position: absolute; left: 37.5%; top: 50%; transform: translate(-50%, -50%); color: #1e5e3a; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Skiable</div>
         <div style="position: absolute; left: 62.5%; top: 50%; transform: translate(-50%, -50%); color: #6b5400; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px;">Marginal</div>
@@ -925,12 +925,12 @@
         <div class="value">6&ndash;10 kt</div>
         <div class="desc" style="color:#1e3a26;">Light ripple. Fully skiable.</div>
       </div>
-      <div class="threshold-card" style="background:#f1c40f; color:#5a4a1a;">
+      <div class="threshold-card" style="background:#f7dc6f; color:#5a4a1a;">
         <div class="label" style="color:#5a4a1a;">Marginal</div>
         <div class="value">10&ndash;15 kt</div>
         <div class="desc" style="color:#5a4a1a;">Choppy. Rough on slalom &mdash; recreational only.</div>
       </div>
-      <div class="threshold-card" style="background:#e74c3c;">
+      <div class="threshold-card" style="background:#f1948a;">
         <div class="label">Rough</div>
         <div class="value">15+ kt</div>
         <div class="desc">Whitecaps mid-river. Slalom out of the question.</div>
@@ -946,10 +946,9 @@
     <a href="https://hitwaterski.com.au" target="_blank">Heirisson Island Waterski Club</a> &middot;
     <a href="https://www.waterskiwa.com.au/wp-content/uploads/2017/07/BurswoodCalendar_2025-2026-1.xlsx" target="_blank">WaterSki WA Burswood calendar (xlsx)</a>
     <br><br>
-    <em>Forecast refreshed Sun 26 April 2026, 18:55 AWST &middot; WillyWeather data &middot; HIT bookings from WaterSki WA Burswood calendar 2025/26 &middot; all times AWST &middot; wind speeds in knots</em>
+    <em>Forecast refreshed Mon 27 April 2026, 18:40 AWST&middot; wind speeds in knots</em>
   </footer>
 
 </div>
 </body>
 </html>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
