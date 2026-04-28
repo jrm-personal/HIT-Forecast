@@ -236,9 +236,9 @@
   .hourly-row.tier-skiable  .hr-tier { color: #196f3d; }
   .hourly-row.tier-marginal .hr-tier { color: #b8950a; }
   .hourly-row.tier-rough    .hr-tier { color: #a93226; }
-  .hourly-row.is-best { outline: 2px solid #1abcd6; outline-offset: -2px; }
-  .hourly-row.is-best .hr-time::after { content: " ★"; color: #1abcd6; font-weight: 800; }
   .hourly-block-best { font-size: 10.5px; color: #0e7e96; font-weight: 700; margin: 4px 0 6px; padding: 4px 8px; background: #eaf6fb; border-left: 3px solid #1abcd6; border-radius: 3px; }
+  .hourly-row.is-best { outline: 2px solid #1abcd6; outline-offset: -2px; }
+  .hourly-row .hr-best { display: inline-block; margin-left: 6px; padding: 1px 6px; background: #1abcd6; color: #fff; border-radius: 8px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.5px; vertical-align: middle; }
   /* Best window block: neutral light grey */
   .best-window-block {
     background: #f8f9fa;
@@ -394,17 +394,17 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 06:00 &ndash; 08:00</div>
+        <div class="hourly-block-best">★ Best hour today: 06:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass is-best">
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">4 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>11&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-skiable is-best">
+        <div class="hourly-row tier-skiable">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
@@ -544,17 +544,17 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 06:00 &ndash; 08:00</div>
+        <div class="hourly-block-best">★ Best hour today: 06:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass is-best">
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">3 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>10&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-glass is-best">
+        <div class="hourly-row tier-glass">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">4 kt</span>
@@ -694,17 +694,17 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 06:00 &ndash; 08:00</div>
+        <div class="hourly-block-best">★ Best hour today: 06:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass is-best">
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">4 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>9&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>9&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-skiable is-best">
+        <div class="hourly-row tier-skiable">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">6 kt</span>
@@ -844,17 +844,17 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 06:00 &ndash; 08:00</div>
+        <div class="hourly-block-best">★ Best hour today: 06:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass is-best">
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">4 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>10&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-glass is-best">
+        <div class="hourly-row tier-glass">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
@@ -995,17 +995,17 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 06:00 &ndash; 08:00</div>
+        <div class="hourly-block-best">★ Best hour today: 06:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass is-best">
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">3 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>13&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-glass is-best">
+        <div class="hourly-row tier-glass">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
@@ -1146,7 +1146,7 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 09:00 &ndash; 11:00</div>
+        <div class="hourly-block-best">★ Best hour today: 07:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass">
           <span class="hr-time">06:00</span>
@@ -1156,11 +1156,11 @@
           <span class="hr-rain rain-light">1 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-skiable">
+        <div class="hourly-row tier-skiable is-best">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>14&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1172,7 +1172,7 @@
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
-        <div class="hourly-row tier-skiable is-best">
+        <div class="hourly-row tier-skiable">
           <span class="hr-time">09:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
@@ -1180,7 +1180,7 @@
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
-        <div class="hourly-row tier-skiable is-best">
+        <div class="hourly-row tier-skiable">
           <span class="hr-time">10:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">7 kt</span>
@@ -1296,17 +1296,17 @@
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
-        <div class="hourly-block-best">★ Best window today: 06:00 &ndash; 08:00</div>
+        <div class="hourly-block-best">★ Best hour today: 06:00</div>
         <div class="hourly-list">
         <div class="hourly-row tier-glass is-best">
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>13&deg;C</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
-        <div class="hourly-row tier-skiable is-best">
+        <div class="hourly-row tier-skiable">
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
