@@ -44,7 +44,7 @@
   }
   .day-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
     margin-bottom: 24px;
   }
@@ -53,7 +53,11 @@
     border-radius: 12px;
     padding: 20px;
     box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    min-width: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
+  .day-card > * { min-width: 0; max-width: 100%; box-sizing: border-box; }
   .day-header {
     display: flex;
     justify-content: space-between;
@@ -208,6 +212,30 @@
   .window-block-header .wb-name { text-align: left; }
   .window-block-header .scale-chip { justify-self: center; }
   .window-block-header .wb-time { text-align: right; letter-spacing: 0.5px; }
+  /* Hourly block — replaces the best-window-block on the draft */
+  .hourly-block { margin-bottom: 14px; padding: 10px 12px; border-radius: 8px; border: 1px solid #e2e6ea; background: #f8f9fa; color: #34495e; }
+  .hourly-block .window-block-header { margin-bottom: 6px; font-size: 9.5px; }
+  .hourly-list { display: flex; flex-direction: column; font-size: 11.5px; line-height: 1.25; }
+  .hourly-row { display: grid; grid-template-columns: 36px 14px 34px 1fr 40px 50px; align-items: center; padding: 3px 6px; gap: 6px; border-left: 3px solid transparent; border-radius: 3px; }
+  .hourly-row + .hourly-row { margin-top: 1px; }
+  .hourly-row.tier-glass    { background: #eafaf1; border-left-color: #27ae60; }
+  .hourly-row.tier-skiable  { background: #f1faf4; border-left-color: #7dcea0; }
+  .hourly-row.tier-marginal { background: #fefbe5; border-left-color: #fcf3b0; }
+  .hourly-row.tier-rough    { background: #fde9e6; border-left-color: #f1948a; }
+  .hourly-row .hr-time { font-weight: 700; color: #0a3d62; }
+  .hourly-row .hr-arrow { text-align: center; font-weight: 700; }
+  .hourly-row .hr-speed { font-weight: 700; }
+  .hourly-row .hr-temp { color: #34495e; white-space: nowrap; }
+  .hourly-row .hr-temp .hr-icon { margin-right: 3px; }
+  .hourly-row .hr-rain { text-align: right; font-weight: 600; font-size: 11px; }
+  .hourly-row .hr-rain.rain-light { color: #1976d2; }
+  .hourly-row .hr-rain.rain-medium { color: #1976d2; font-weight: 700; }
+  .hourly-row .hr-rain.rain-heavy { color: #fff; background: #1976d2; padding: 1px 5px; border-radius: 8px; }
+  .hourly-row .hr-tier { text-align: right; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+  .hourly-row.tier-glass    .hr-tier { color: #1e8449; }
+  .hourly-row.tier-skiable  .hr-tier { color: #196f3d; }
+  .hourly-row.tier-marginal .hr-tier { color: #b8950a; }
+  .hourly-row.tier-rough    .hr-tier { color: #a93226; }
   /* Best window block: neutral light grey */
   .best-window-block {
     background: #f8f9fa;
@@ -293,6 +321,8 @@
   }
   footer a { color: #1976d2; text-decoration: none; }
   footer a:hover { text-decoration: underline; }
+  @media (max-width: 800px) { .day-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .day-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -359,34 +389,114 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; SSE 5 kt across the club window &middot; 75% rain risk in window (90% daily, 15&ndash;25mm)</div>
       </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">12&ndash;2 pm</span></div>
-      <div class="window-time-large">12&ndash;2 pm</div>
-      <div class="window-time-sub">Cool, rain likely</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(319 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">Southeast &middot; BEST direction</span>
-          <span class="stat-value">6 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">4 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>🌦️ Shower or two</span><span>13&ndash;19°C</span><span><span class="rain-pill rain-medium">3&ndash;6 mm rain</span></span>
-      </div>
-      <div class="window-cond-line">BEST direction + workable wind &middot; SE 6 kt across the 12&ndash;2 pm window &middot; 70% rain risk in window (90% daily)</div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>12&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -428,34 +538,114 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; ESE 5 kt across the club window &middot; 5% rain risk in window (15% daily, &lt;&nbsp;1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-glass">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">1&ndash;3 pm</span></div>
-      <div class="window-time-large">1&ndash;3 pm</div>
-      <div class="window-time-sub">Mild, mostly dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(299 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">East-Southeast &middot; BEST direction</span>
-          <span class="stat-value">4 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">3 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:20%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>13&ndash;24°C</span><span>0 mm rain</span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind &middot; ESE 4 kt across the 1&ndash;3 pm window &middot; 5% rain risk in window (15% daily)</div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">4 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>12&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -497,34 +687,114 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; SSE 5 kt across the club window &middot; 35% rain risk in window (50% daily, &lt;&nbsp;1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-glass">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">9&ndash;11 am</span></div>
-      <div class="window-time-large">9&ndash;11 am</div>
-      <div class="window-time-sub">Mild, shower chance</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(341 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">Southeast &middot; BEST direction</span>
-          <span class="stat-value">4 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">4 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>9&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:20%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>🌦️ Shower or two</span><span>13&ndash;22°C</span><span>0 mm rain</span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind &middot; SSE 4 kt across the 9&ndash;11 am window &middot; 30% rain risk in window (50% daily)</div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>12&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">→</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -566,34 +836,114 @@
         </div>
         <div class="window-cond-line">AVERAGE direction + workable wind &middot; S 8 kt across the club window &middot; 35% rain risk in window (50% daily, &lt;&nbsp;1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7&ndash;9 am</span></div>
-      <div class="window-time-large">7&ndash;9 am</div>
-      <div class="window-time-sub">Cool, shower risk</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(3 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">South &middot; best 2-hr</span>
-          <span class="stat-value">8 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">4 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:40%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>🌦️ Shower or two</span><span>10&ndash;17°C</span><span><span class="rain-pill rain-light">&lt; 1 mm rain</span></span>
-      </div>
-      <div class="window-cond-line">AVERAGE direction + workable wind &middot; S 8 kt across the 7&ndash;9 am window &middot; 30% rain risk in window (50% daily)</div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>12&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>14&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>15&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-marginal">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">11 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">MARG</span>
+        </div>
+        <div class="hourly-row tier-marginal">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">11 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">MARG</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">→</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>16&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -636,34 +986,114 @@
         </div>
         <div class="window-cond-line">BEST direction + workable wind &middot; SSE 6 kt across the club window &middot; 5% rain risk in window (10% daily, &lt;&nbsp;1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-glass">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">11 am&ndash;1 pm</span></div>
-      <div class="window-time-large">11 am&ndash;1 pm</div>
-      <div class="window-time-sub">Cool, mostly dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(319 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">Southeast &middot; BEST direction</span>
-          <span class="stat-value">5 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">3 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:25%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>6&ndash;18°C</span><span>0 mm rain</span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind &middot; SE 5 kt across the 11 am&ndash;1 pm window &middot; 5% rain risk in window (10% daily)</div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-marginal">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">11 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">MARG</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>23&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>22&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -706,34 +1136,114 @@
         </div>
         <div class="window-cond-line">BEST direction + light wind &middot; SE 5 kt across the club window &middot; 5% rain risk in window (5% daily, &lt;&nbsp;1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-glass">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-glass">GLASS</span><span class="wb-time">10 am&ndash;12 pm</span></div>
-      <div class="window-time-large">10 am&ndash;12 pm</div>
-      <div class="window-time-sub">Cool, mostly dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(308 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">Southeast &middot; BEST direction</span>
-          <span class="stat-value">4 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">3 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>14&deg;C</span>
+          <span class="hr-rain rain-light">1 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:20%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>8&ndash;20°C</span><span>0 mm rain</span>
-      </div>
-      <div class="window-cond-line">BEST direction + light wind &middot; SE 4 kt across the 10 am&ndash;12 pm window &middot; 5% rain risk in window (5% daily)</div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>15&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>19&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>20&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↖</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">🌦️</span>19&deg;C</span>
+          <span class="hr-rain rain-light">0.5 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        </div>
       </div>
     </div>
 
@@ -775,34 +1285,114 @@
         </div>
         <div class="window-cond-line">BEST direction + workable wind &middot; SE 6 kt across the club window &middot; 5% rain risk in window (5% daily, &lt;&nbsp;1mm)</div>
       </div>
-      <div class="window-block best-window-block tier-skiable">
-        <div class="window-block-header"><span class="wb-name">2-hr window</span><span class="scale-chip tier-skiable">SKIABLE</span><span class="wb-time">7&ndash;9 am</span></div>
-      <div class="window-time-large">7&ndash;9 am</div>
-      <div class="window-time-sub">Cool, mostly dry</div>
-      <div class="compass-row">
-        <svg width="80" height="80" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="42" fill="#f8f9fa" stroke="#bdc3c7" stroke-width="2"/>
-            <text x="50" y="14" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">N</text>
-            <text x="88" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">E</text>
-            <text x="50" y="92" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">S</text>
-            <text x="12" y="53" text-anchor="middle" font-size="9" fill="#5a6c7d" font-weight="600">W</text>
-            <g transform="rotate(301 50 50)">
-              <path d="M 50 22 L 38 44 L 46 44 L 46 78 L 54 78 L 54 44 L 62 44 Z" fill="#2ecc71" stroke="#1e8449" stroke-width="1"/>
-            </g>
-          </svg>
-        <div class="stat-row">
-          <span class="compass-label">East-Southeast &middot; BEST direction</span>
-          <span class="stat-value">6 kt</span>
+      <div class="window-block hourly-block">
+        <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
+        <div class="hourly-list">
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">06:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
         </div>
-      </div>
-      <div class="wind-bar-wrap">
-        <div class="wind-bar-bg"><div class="wind-bar-fill" style="width:30%"></div></div>
-        <div class="wind-bar-marks"><span style="left:0%">0</span><span style="left:25%">5</span><span style="left:50%">10</span><span style="left:75%">15</span><span style="left:100%">20+</span></div>
-      </div>
-      <div class="weather-row">
-        <span>⛅ Partly cloudy</span><span>8&ndash;21°C</span><span>0 mm rain</span>
-      </div>
-      <div class="window-cond-line">BEST direction + workable wind &middot; ESE 6 kt across the 7&ndash;9 am window &middot; 5% rain risk in window (5% daily)</div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">07:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">08:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">6 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">09:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">10:00</span>
+          <span class="hr-arrow">←</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">11:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">12:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">13:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">9 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">14:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>23&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">15:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">10 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>22&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">16:00</span>
+          <span class="hr-arrow">↗</span>
+          <span class="hr-speed">8 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-skiable">
+          <span class="hr-time">17:00</span>
+          <span class="hr-arrow">→</span>
+          <span class="hr-speed">7 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">SKIABLE</span>
+        </div>
+        <div class="hourly-row tier-glass">
+          <span class="hr-time">18:00</span>
+          <span class="hr-arrow">↑</span>
+          <span class="hr-speed">5 kt</span>
+          <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-rain">0 mm</span>
+          <span class="hr-tier">GLASS</span>
+        </div>
+        </div>
       </div>
     </div>
   
