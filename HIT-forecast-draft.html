@@ -216,7 +216,7 @@
   .hourly-block { margin-bottom: 14px; padding: 10px 12px; border-radius: 8px; border: 1px solid #e2e6ea; background: #f8f9fa; color: #34495e; }
   .hourly-block .window-block-header { margin-bottom: 6px; font-size: 9.5px; }
   .hourly-list { display: flex; flex-direction: column; font-size: 11.5px; line-height: 1.25; }
-  .hourly-row { display: grid; grid-template-columns: 36px 14px 34px 1fr 40px 50px; align-items: center; padding: 3px 6px; gap: 6px; border-left: 3px solid transparent; border-radius: 3px; }
+  .hourly-row { display: grid; grid-template-columns: 36px 14px 34px 1fr auto 40px 50px; align-items: center; padding: 3px 6px; gap: 6px; border-left: 3px solid transparent; border-radius: 3px; }
   .hourly-row + .hourly-row { margin-top: 1px; }
   .hourly-row.tier-glass    { background: #eafaf1; border-left-color: #27ae60; }
   .hourly-row.tier-skiable  { background: #f1faf4; border-left-color: #7dcea0; }
@@ -237,7 +237,6 @@
   .hourly-row.tier-marginal .hr-tier { color: #b8950a; }
   .hourly-row.tier-rough    .hr-tier { color: #a93226; }
   .hourly-block-best { font-size: 10.5px; color: #0e7e96; font-weight: 700; margin: 4px 0 6px; padding: 4px 8px; background: #eaf6fb; border-left: 3px solid #1abcd6; border-radius: 3px; }
-  .hourly-row.is-best { outline: 2px solid #1abcd6; outline-offset: -2px; }
   .hourly-row .hr-best { display: inline-block; margin-left: 6px; padding: 1px 6px; background: #1abcd6; color: #fff; border-radius: 8px; font-size: 9.5px; font-weight: 800; letter-spacing: 0.5px; vertical-align: middle; }
   /* Best window block: neutral light grey */
   .best-window-block {
@@ -341,7 +340,7 @@
       <h1 style="font-size: 28px; margin: 0;">Slalom Forecast</h1>
     </div>
     <div class="subtitle">Tue 28 April &ndash; Mon 4 May 2026 &middot; AWST</div>
-    <div class="subtitle" style="margin-top: 6px; font-size: 12px; color: #1976d2; font-weight: 600;">Last updated: <span id="last-updated">Tue 28 April 2026, 12:13 AWST</span></div>
+    <div class="subtitle" style="margin-top: 6px; font-size: 12px; color: #1976d2; font-weight: 600;">Last updated: <span id="last-updated">Tue 28 April 2026, 14:13 AWST</span></div>
     <div class="legend">
       <div style="font-size:12px; color:#5a6c7d; margin-right:6px;"><strong>Compass = direction &times; speed:</strong></div>
       <div class="legend-item"><div class="legend-swatch" style="background:#27ae60"></div>Glass &middot; &le; 5 kt</div>
@@ -390,7 +389,7 @@
         <div class="weather-row">
           <span>🌦️ Shower or two</span><span>13&ndash;19°C</span><span><span class="rain-pill rain-light">1&ndash;3 mm rain</span></span>
         </div>
-        <div class="window-cond-line">BEST direction + light wind &middot; SSE 5 kt across the club window &middot; 75% rain risk in window (90% daily, 15&ndash;25mm)</div>
+        <div class="window-cond-line">BEST direction + light wind &middot; SSE 5 kt across the club window &middot; 65% rain risk in window (90% daily, 15&ndash;25mm)</div>
       </div>
       <div class="window-block hourly-block">
         <div class="window-block-header"><span class="wb-name">Hourly</span><span class="wb-time">06:00 &ndash; 18:00</span></div>
@@ -400,7 +399,8 @@
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">4 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>11&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -409,6 +409,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>12&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -417,6 +418,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -425,6 +427,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -433,6 +436,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -441,6 +445,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -449,6 +454,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -457,6 +463,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -465,6 +472,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -473,6 +481,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -481,6 +490,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -489,6 +499,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -497,6 +508,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -550,7 +562,8 @@
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">3 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>10&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -559,6 +572,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">4 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -567,6 +581,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>12&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -575,6 +590,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -583,6 +599,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -591,6 +608,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -599,6 +617,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -607,6 +626,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -615,6 +635,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -623,6 +644,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -631,6 +653,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -639,6 +662,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -647,6 +671,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -700,7 +725,8 @@
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">4 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>9&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>9&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -709,6 +735,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -717,6 +744,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -725,6 +753,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>12&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -733,6 +762,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -741,6 +771,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -749,6 +780,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -757,6 +789,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -765,6 +798,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -773,6 +807,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -781,6 +816,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -789,6 +825,7 @@
           <span class="hr-arrow">→</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -797,6 +834,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -850,7 +888,8 @@
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">4 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>10&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>10&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -859,6 +898,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>11&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -867,6 +907,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>12&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -875,6 +916,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -883,6 +925,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -891,6 +934,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -899,6 +943,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">11 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">MARG</span>
         </div>
@@ -907,6 +952,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">11 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">MARG</span>
         </div>
@@ -915,6 +961,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -923,6 +970,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -931,6 +979,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -939,6 +988,7 @@
           <span class="hr-arrow">→</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -947,6 +997,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1001,7 +1052,8 @@
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">3 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>13&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1010,6 +1062,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1018,6 +1071,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1026,6 +1080,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1034,6 +1089,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1042,6 +1098,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1050,6 +1107,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">11 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">MARG</span>
         </div>
@@ -1058,6 +1116,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1066,6 +1125,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>23&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1074,6 +1134,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>22&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1082,6 +1143,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1090,6 +1152,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1098,6 +1161,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1153,6 +1217,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">3 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">1 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1160,7 +1225,8 @@
           <span class="hr-time">07:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>14&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1169,6 +1235,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1177,6 +1244,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1185,6 +1253,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>17&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1193,6 +1262,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1201,6 +1271,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1209,6 +1280,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1217,6 +1289,7 @@
           <span class="hr-arrow">↖</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1225,6 +1298,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1233,6 +1307,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1241,6 +1316,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1249,6 +1325,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">🌦️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain rain-light">0.5 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1302,7 +1379,8 @@
           <span class="hr-time">06:00</span>
           <span class="hr-arrow">←</span>
           <span class="hr-speed">5 kt</span>
-          <span class="hr-temp"><span class="hr-icon">⛅ <span class="hr-best">★ BEST</span></span>13&deg;C</span>
+          <span class="hr-temp"><span class="hr-icon">⛅</span>13&deg;C</span>
+          <span class="hr-best">★ BEST</span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1311,6 +1389,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>14&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1319,6 +1398,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">6 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>15&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1327,6 +1407,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">⛅</span>16&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1335,6 +1416,7 @@
           <span class="hr-arrow">←</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>18&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1343,6 +1425,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1351,6 +1434,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1359,6 +1443,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">9 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1367,6 +1452,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>23&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1375,6 +1461,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">10 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>22&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1383,6 +1470,7 @@
           <span class="hr-arrow">↗</span>
           <span class="hr-speed">8 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>21&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1391,6 +1479,7 @@
           <span class="hr-arrow">→</span>
           <span class="hr-speed">7 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>20&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">SKIABLE</span>
         </div>
@@ -1399,6 +1488,7 @@
           <span class="hr-arrow">↑</span>
           <span class="hr-speed">5 kt</span>
           <span class="hr-temp"><span class="hr-icon">☀️</span>19&deg;C</span>
+          <span class="hr-best"></span>
           <span class="hr-rain">0 mm</span>
           <span class="hr-tier">GLASS</span>
         </div>
@@ -1548,7 +1638,7 @@
     <a href="https://hitwaterski.com.au" target="_blank">Heirisson Island Waterski Club</a> &middot;
     <a href="https://www.waterskiwa.com.au/wp-content/uploads/2017/07/BurswoodCalendar_2025-2026-1.xlsx" target="_blank">WaterSki WA Burswood calendar (xlsx)</a>
     <br><br>
-    <em>Forecast refreshed Tue 28 April 2026, 12:13 AWST&middot; wind speeds in knots</em>
+    <em>Forecast refreshed Tue 28 April 2026, 14:13 AWST&middot; wind speeds in knots</em>
   </footer>
 
 </div>
